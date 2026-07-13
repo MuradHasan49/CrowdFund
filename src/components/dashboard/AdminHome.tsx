@@ -20,10 +20,16 @@ import {
 } from 'recharts';
 import { formatCurrency } from '@/lib/utils';
 import { CREDIT_PURCHASE_RATE } from '@/lib/constants';
+import { useState, useEffect } from 'react';
 
 const COLORS = ['#6C47FF', '#00D4AA', '#FF6B35', '#F59E0B'];
 
 export function AdminHome() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const { data: users, isLoading: usersLoading } = useQuery({
     queryKey: ['admin-stats-users'],
     queryFn: async () => {
@@ -40,7 +46,7 @@ export function AdminHome() {
     },
   });
 
-  const isLoading = usersLoading || campaignsLoading;
+  const isLoading = !isMounted || usersLoading || campaignsLoading;
 
   if (isLoading) {
     return (

@@ -7,6 +7,7 @@ import { Menu, Bell, Wallet, User as UserIcon } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { CREDIT_PURCHASE_RATE } from '@/lib/constants';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 interface DashboardHeaderProps {
   onOpenMobile: () => void;
@@ -62,7 +63,10 @@ export function DashboardHeader({ onOpenMobile }: DashboardHeaderProps) {
         </div>
 
         {/* Notifications */}
-        <button className="relative rounded-full p-2 text-[var(--cf-text-muted)] hover:bg-[var(--cf-surface-2)] transition-colors">
+        <button 
+          className="relative rounded-full p-2 text-[var(--cf-text-muted)] hover:bg-[var(--cf-surface-2)] transition-colors"
+          onClick={() => toast('No new notifications right now', { icon: '🔔' })}
+        >
           <Bell className="h-5 w-5" />
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[var(--cf-accent)] ring-2 ring-[var(--cf-surface)]" />
         </button>
