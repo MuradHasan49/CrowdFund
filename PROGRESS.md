@@ -356,19 +356,31 @@ feat(campaigns): campaigns explore, detail pages, and contribute modal
 
 ---
 
-### 🔄 Phase 12 — Client: Dashboard Layout & Sidebar
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 12 — Client: Dashboard Layout & Sidebar
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [ ] Build `src/app/(dashboard)/layout.tsx` — Protected layout shell
-- [ ] Build `DashboardSidebar.tsx` — Navigation links based on role (creator vs supporter)
-- [ ] Build `DashboardHeader.tsx` — Breadcrumbs, mobile menu toggle, role badge
-- [ ] Build `middleware.ts` — Auth guard (checks `cf_token`, redirects to `/login` if missing)
+- [x] Build `src/app/(dashboard)/layout.tsx` — Protected layout shell with re-hydration logic
+- [x] Build `DashboardSidebar.tsx` — Navigation links based on role (creator vs supporter)
+- [x] Build `DashboardHeader.tsx` — Breadcrumbs, mobile menu toggle, role badge, credits balance
+- [x] Build `middleware.ts` — Auth guard (checks `cf_token`, redirects to `/login` if missing)
+
+#### Commit Message
+```
+feat(dashboard): role-based sidebar layout with responsive collapse
+```
 
 ---
 
-### ⬜ Phase 13 — Client: Supporter Dashboard Pages
-**Status: NOT STARTED**
+### 🔄 Phase 13 — Client: Dashboard Home (Supporter & Creator)
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Build `src/app/(dashboard)/dashboard/page.tsx` — Branch based on user role
+- [ ] Build Supporter Dashboard: Shows total credits, latest contribution, recommended campaigns
+- [ ] Build Creator Dashboard: Shows total raised, active campaigns, latest contributions received
+- [ ] Add `StatsCard.tsx` for metrics
 
 ---
 
@@ -402,7 +414,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 5 |
+| Client | 20+ | 6 |
 
 ---
 
