@@ -22,7 +22,7 @@ import {
 const MENU_ITEMS = {
   supporter: [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
-    { name: 'Explore Campaigns', href: '/dashboard/explore', icon: Search },
+    { name: 'Explore Campaigns', href: '/campaigns', icon: Search },
     { name: 'My Contributions', href: '/dashboard/my-contributions', icon: HandHeart },
     { name: 'Purchase Credit', href: '/dashboard/purchase-credit', icon: CreditCard },
     { name: 'Payment History', href: '/dashboard/payment-history', icon: History },
@@ -39,7 +39,6 @@ const MENU_ITEMS = {
     { name: 'Manage Users', href: '/dashboard/manage-users', icon: Users },
     { name: 'Manage Campaigns', href: '/dashboard/manage-campaigns', icon: FileBox },
     { name: 'Withdrawal Requests', href: '/dashboard/withdrawal-requests', icon: FileCheck },
-    { name: 'Reports', href: '/dashboard/reports', icon: PieChart },
   ],
 };
 

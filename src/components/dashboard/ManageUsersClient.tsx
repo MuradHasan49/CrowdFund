@@ -100,7 +100,7 @@ export function ManageUsersClient() {
                         <option value="admin">Admin</option>
                       </select>
                     </td>
-                    <td className="px-6 py-4 font-semibold">{user.credits.toLocaleString()}</td>
+                    <td className="px-6 py-4 font-semibold">{(user.credits || 0).toLocaleString()}</td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                         user.isActive ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'

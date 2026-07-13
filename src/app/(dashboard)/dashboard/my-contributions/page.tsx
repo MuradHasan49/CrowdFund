@@ -1,1 +1,10 @@
-export default function mycontributions() { return <div>(dashboard)/dashboard/my-contributions/page.tsx</div>; }
+import { MyContributionsClient } from '@/components/dashboard/MyContributionsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'My Contributions | CrowdFund',
+};
+
+export default function MyContributionsPage() {
+  return <MyContributionsClient />;
+}
