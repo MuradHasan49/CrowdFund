@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
+import { SocialLoginButtons } from '@/components/auth/SocialLoginButtons';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -105,12 +106,17 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <Button type="submit" className="w-full" isLoading={loginMutation.isPending}>
+            <Button type="submit" className="w-full mt-6" isLoading={loginMutation.isPending}>
               Sign in
             </Button>
           </form>
 
-          <div className="mt-6">
+          <SocialLoginButtons isLoading={loginMutation.isPending} />
+        </div>
+        
+        {/* Demo Credentials (Development Only) */}
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+          <div className="bg-[var(--cf-surface)] py-6 px-4 shadow-xl sm:rounded-xl sm:px-10 border border-[var(--cf-border)]">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-[var(--cf-border)]" />

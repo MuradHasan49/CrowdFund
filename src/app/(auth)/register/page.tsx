@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
+import { SocialLoginButtons } from '@/components/auth/SocialLoginButtons';
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -146,6 +147,8 @@ export default function RegisterPage() {
               Create Account
             </Button>
           </form>
+
+          <SocialLoginButtons isLoading={registerMutation.isPending} />
         </div>
       </div>
     </div>
