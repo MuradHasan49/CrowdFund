@@ -1,1 +1,10 @@
-export default function paymenthistory() { return <div>(dashboard)/dashboard/payment-history/page.tsx</div>; }
+import { PaymentHistoryClient } from '@/components/dashboard/PaymentHistoryClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Payment History | CrowdFund',
+};
+
+export default function PaymentHistoryPage() {
+  return <PaymentHistoryClient />;
+}

@@ -390,19 +390,29 @@ feat(dashboard): role-based dashboard home for supporter and creator
 
 ---
 
-### 🔄 Phase 14 — Client: Creator Dashboard Pages
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 14 — Client: Creator Dashboard Pages
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [ ] Build `/dashboard/add-campaign` | Full form with all fields + imgBB upload
-- [ ] Build `/dashboard/my-campaigns` | Table sorted by deadline + Update modal + Delete confirm
-- [ ] Build `/dashboard/withdrawals` | Credit summary + Withdrawal form with guard
-- [ ] Build `/dashboard/payment-history` (Creator view)
+- [x] Build `/dashboard/add-campaign` | Full form with all fields + imgBB upload
+- [x] Build `/dashboard/my-campaigns` | Table sorted by deadline + Update modal + Delete confirm
+- [x] Build `/dashboard/withdrawals` | Credit summary + Withdrawal form with guard
+- [x] Build `/dashboard/payment-history` (Creator view)
+
+#### Commit Message
+```
+feat(dashboard/creator): add-campaign form, my-campaigns, withdrawals, payment-history
+```
 
 ---
 
-### ⬜ Phase 15 — Client: Admin Dashboard Pages
-**Status: NOT STARTED**
+### 🔄 Phase 15 — Client: Supporter Dashboard Pages
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Build `/dashboard/purchase-credit` | Input amount → auto-calc credits → simulated Stripe flow
+- [ ] Ensure Supporter Payment History view works (we already built the component logic)
 
 ---
 
@@ -426,7 +436,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 7 |
+| Client | 20+ | 8 |
 
 ---
 

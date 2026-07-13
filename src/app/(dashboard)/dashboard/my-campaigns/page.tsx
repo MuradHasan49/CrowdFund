@@ -1,1 +1,10 @@
-export default function mycampaigns() { return <div>(dashboard)/dashboard/my-campaigns/page.tsx</div>; }
+import { MyCampaignsClient } from '@/components/dashboard/MyCampaignsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'My Campaigns | CrowdFund',
+};
+
+export default function MyCampaignsPage() {
+  return <MyCampaignsClient />;
+}
