@@ -300,18 +300,35 @@ feat(auth): register and login pages with cookie-based JWT auth
 
 ---
 
-### 🔄 Phase 9 — Client: Navbar, Footer, Public Layout
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 9 — Client: Navbar, Footer, Public Layout
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
-Steps to do:
-- [ ] Build `src/app/(public)/layout.tsx` — Wraps all public pages with `<Navbar>` + `<Footer>`
-- [ ] Build `Navbar.tsx` — Responsive, sticky, shows user avatar/credits when logged in
-- [ ] Build `Footer.tsx` — Static footer with links
+#### Steps Done
+- [x] Built `src/app/(public)/layout.tsx` — Wraps all public pages with `<Navbar>` + `<Footer>`
+- [x] Built `Navbar.tsx` — Responsive, sticky, shows user avatar/credits when logged in
+- [x] Built `Footer.tsx` — Static footer with links
+
+#### Commit Message
+```
+feat(layout): Navbar with auth state, Credits badge, and Footer
+```
 
 ---
 
-### ⬜ Phase 10 — Client: Home Page (8 Sections)
-**Status: NOT STARTED**
+### 🔄 Phase 10 — Client: Home Page (8 Sections)
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Implement `HeroSlider.tsx`
+- [ ] Implement `TopFundedCampaigns.tsx`
+- [ ] Implement `Testimonials.tsx`
+- [ ] Implement `HowItWorks.tsx`
+- [ ] Implement `ExploreByCategory.tsx`
+- [ ] Implement `PlatformStats.tsx`
+- [ ] Implement `Newsletter.tsx`
+- [ ] Implement `CallToAction.tsx`
+- [ ] Assemble all sections in `src/app/(public)/page.tsx`
 
 ---
 
@@ -360,7 +377,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 2 |
+| Client | 20+ | 3 |
 
 ---
 
