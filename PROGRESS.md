@@ -257,30 +257,56 @@ feat(server): finalize backend with withdrawals, credit purchases, admin user ma
 
 ## CLIENT PHASES
 
-### 🔄 Phase 7 — Client: Foundation (Install + Config)
+### ✅ Phase 7 — Client: Foundation (Install + Config)
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
+
+#### Steps Done
+- [x] Installed packages: `axios`, `@tanstack/react-query`, `zustand`, `react-hook-form`, `zod`, `@hookform/resolvers`, `framer-motion`, `swiper`, `recharts`, plus utilities like `tailwind-merge`, `clsx`, `react-hot-toast`
+- [x] Created `src/lib/api.ts` — Axios instance with `withCredentials: true`
+- [x] Created `src/lib/constants.ts` — Mirrored from server
+- [x] Created `src/lib/queryKeys.ts` — Centralized factory for TanStack Query
+- [x] Created `src/lib/utils.ts` — `cn()`, `formatCurrency()`, `formatDate()`
+- [x] Created `src/store/authStore.ts` — Zustand store for user session + initialization state
+- [x] Updated `src/app/globals.css` — Added `--cf-*` custom properties & standard theme resets
+- [x] Created `src/components/Providers.tsx` — Wraps app in `QueryClientProvider` and `Toaster`
+- [x] Updated `src/app/layout.tsx` — Inter font + Providers injected
+- [x] Created `src/middleware.ts` — Route protection (`/dashboard/*` redirect to `/login` if no cookie)
+- [x] Bootstrapped ALL App Router folders with base `page.tsx` exports (`(public)`, `(auth)`, `(dashboard)`)
+
+#### Commit Message
+```
+feat(config): client foundation — axios, zustand, design tokens, middleware
+```
+
+---
+
+### ✅ Phase 8 — Client: Auth Pages
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
+
+#### Steps Done
+- [x] Created `useAuth()` hook (`src/hooks/useAuth.ts`) — Integrates TanStack Query + Zustand
+- [x] Created `AuthInitializer` (`src/components/AuthInitializer.tsx`) — Global hydration wrapper
+- [x] Created `Input` and `Button` UI components (`src/components/ui/`)
+- [x] Implemented `src/app/(auth)/login/page.tsx` — Login Form with React Hook Form + Zod + Demo buttons
+- [x] Implemented `src/app/(auth)/register/page.tsx` — Register Form with Zod validation and Confirm Password matching
+- [x] Test the auth flow — Servers are running on `localhost:3000` (Client) and `localhost:8000` (Server)
+
+#### Commit Message
+```
+feat(auth): register and login pages with cookie-based JWT auth
+```
+
+---
+
+### 🔄 Phase 9 — Client: Navbar, Footer, Public Layout
 **Status: IN PROGRESS — Next Phase**
 
 Steps to do:
-- [ ] Initialize Next.js app or use existing client folder
-- [ ] Install packages: `axios`, `@tanstack/react-query`, `zustand`, `react-hook-form`, `zod`, `@hookform/resolvers`, `framer-motion`, `swiper`, `recharts`
-- [ ] Create `src/lib/api.ts` with Axios instance + `withCredentials: true`
-- [ ] Create `src/lib/constants.ts` (sync with server)
-- [ ] Create `src/lib/queryKeys.ts`
-- [ ] Create `src/lib/utils.ts` (`cn`, formatters)
-- [ ] Create `src/store/authStore.ts` (Zustand)
-- [ ] Add design tokens to `src/app/globals.css`
-- [ ] Update `src/app/layout.tsx` (Providers, Inter font)
-- [ ] Create `src/middleware.ts` for route protection
-
----
-
-### ⬜ Phase 8 — Client: Auth Pages
-**Status: NOT STARTED**
-
----
-
-### ⬜ Phase 9 — Client: Navbar, Footer, Public Layout
-**Status: NOT STARTED**
+- [ ] Build `src/app/(public)/layout.tsx` — Wraps all public pages with `<Navbar>` + `<Footer>`
+- [ ] Build `Navbar.tsx` — Responsive, sticky, shows user avatar/credits when logged in
+- [ ] Build `Footer.tsx` — Static footer with links
 
 ---
 
@@ -334,7 +360,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 0 |
+| Client | 20+ | 2 |
 
 ---
 
