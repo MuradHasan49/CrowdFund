@@ -339,19 +339,31 @@ feat(home): how it works, category grid, platform stats, newsletter, CTA
 
 ---
 
-### 🔄 Phase 11 — Client: Campaigns Explore + Detail Pages
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 11 — Client: Campaigns Explore + Detail Pages
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [x] Build `CampaignCard.tsx` (Completed early for Top Funded Campaigns section)
-- [ ] Build `/campaigns` page (Explore) — Grid, search, category filter, sorting
-- [ ] Build `/campaigns/[id]` page (Details) — Fetch `GET /api/campaigns/:id`, show full UI
-- [ ] Build `ContributeModal.tsx` — Inside details page to handle donations
+- [x] Build `CampaignCard.tsx` (Completed early for Top Funded Campaigns section, fixed types to match backend exactly)
+- [x] Build `/campaigns` page (Explore) — Built `CampaignsClient.tsx` with search, category filter, sorting, and TanStack Query
+- [x] Build `/campaigns/[id]` page (Details) — Fetches `GET /api/campaigns/:id`, shows hero, creator info, and progress
+- [x] Build `ContributeModal.tsx` — Handles form validation, checks `creditStore`, and submits `POST /contributions`
+
+#### Commit Message
+```
+feat(campaigns): campaigns explore, detail pages, and contribute modal
+```
 
 ---
 
-### ⬜ Phase 12 — Client: Dashboard Layout + Sidebar
-**Status: NOT STARTED**
+### 🔄 Phase 12 — Client: Dashboard Layout & Sidebar
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Build `src/app/(dashboard)/layout.tsx` — Protected layout shell
+- [ ] Build `DashboardSidebar.tsx` — Navigation links based on role (creator vs supporter)
+- [ ] Build `DashboardHeader.tsx` — Breadcrumbs, mobile menu toggle, role badge
+- [ ] Build `middleware.ts` — Auth guard (checks `cf_token`, redirects to `/login` if missing)
 
 ---
 
@@ -390,7 +402,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 4 |
+| Client | 20+ | 5 |
 
 ---
 

@@ -1,20 +1,17 @@
 export interface Campaign {
   id: string;
-  creator: {
-    _id?: string;
-    id: string;
-    name: string;
-    email?: string;
-    photoUrl?: string;
-  };
+  creator_id: string;
+  creator_name: string;
+  creator_email: string;
   title: string;
-  description: string;
+  campaign_story: string;
   category: string;
-  goal_amount: number;
+  funding_goal: number;
+  minimum_contribution: number;
+  reward_info: string;
+  campaign_image_url: string;
   raised_amount: number;
   deadline: string;
-  min_contribution: number;
-  image_url: string;
-  status: 'active' | 'funded' | 'failed' | 'paused';
+  status: 'pending' | 'active' | 'rejected' | 'closed';
   createdAt: string;
 }

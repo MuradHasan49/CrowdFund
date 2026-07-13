@@ -1,1 +1,11 @@
-export default function campaigns() { return <div>(public)/campaigns/page.tsx</div>; }
+import { CampaignsClient } from '@/components/campaigns/CampaignsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Explore Campaigns | CrowdFund',
+  description: 'Discover innovative projects and support creators on CrowdFund.',
+};
+
+export default function CampaignsPage() {
+  return <CampaignsClient />;
+}
