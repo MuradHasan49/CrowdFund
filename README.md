@@ -35,7 +35,7 @@
 
 4. **Contribution Review Workflow** — Creators manually approve or reject pending contributions; rejections automatically refund the Supporter's credits.
 
-5. **Secure JWT Authentication** — Email/password login and Google OAuth, with JWT stored in localStorage. Session is re-hydrated on page reload — no logout on refresh.
+5. **Secure JWT Authentication** — Email/password login and Google OAuth, with JWT stored securely in an `httpOnly` cookie. Session is re-hydrated on page reload automatically by the server-side proxy middleware.
 
 6. **Real-Time Credit Balance** — Available credits displayed in the navbar update instantly after every contribution, purchase, or withdrawal action.
 

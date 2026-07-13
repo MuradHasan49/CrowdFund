@@ -455,8 +455,13 @@ Steps to do:
 
 ---
 
-### ⬜ Phase 18 — Update README + Deployment
-**Status: NOT STARTED**
+### ✅ Phase 18 — Update README + Deployment
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
+
+Steps to do:
+- [x] Update README with final project structure, auth details, and setup instructions.
+- [x] Ensure `ARCHITECTURE.md` and `PRD.md` are referenced correctly.
 
 ---
 
