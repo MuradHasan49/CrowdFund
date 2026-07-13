@@ -19,7 +19,8 @@ import {
   FileBox, 
   FileCheck, 
   PieChart,
-  LogOut
+  LogOut,
+  UserCog
 } from 'lucide-react';
 
 const MENU_ITEMS = {
@@ -29,6 +30,7 @@ const MENU_ITEMS = {
     { name: 'My Contributions', href: '/dashboard/my-contributions', icon: HandHeart },
     { name: 'Purchase Credit', href: '/dashboard/purchase-credit', icon: CreditCard },
     { name: 'Payment History', href: '/dashboard/payment-history', icon: History },
+    { name: 'Edit Profile', href: '/dashboard/profile', icon: UserCog },
   ],
   creator: [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
@@ -36,12 +38,14 @@ const MENU_ITEMS = {
     { name: 'My Campaigns', href: '/dashboard/my-campaigns', icon: FolderOpen },
     { name: 'Withdrawals', href: '/dashboard/withdrawals', icon: Banknote },
     { name: 'Payment History', href: '/dashboard/payment-history', icon: History },
+    { name: 'Edit Profile', href: '/dashboard/profile', icon: UserCog },
   ],
   admin: [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Manage Users', href: '/dashboard/manage-users', icon: Users },
     { name: 'Manage Campaigns', href: '/dashboard/manage-campaigns', icon: FileBox },
     { name: 'Withdrawal Requests', href: '/dashboard/withdrawal-requests', icon: FileCheck },
+    { name: 'Edit Profile', href: '/dashboard/profile', icon: UserCog },
   ],
 };
 
@@ -85,11 +89,11 @@ export function DashboardSidebar({ isMobileOpen, onCloseMobile }: DashboardSideb
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex h-16 items-center border-b border-[var(--cf-border)] px-6">
-          <Link href="/" className="flex items-center gap-2" onClick={onCloseMobile}>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--cf-primary)]">
-              <span className="font-bold text-white">CF</span>
+          <Link href="/" className="flex items-center gap-2 group" onClick={onCloseMobile}>
+            <div className="flex h-9 items-center justify-center rounded-lg overflow-hidden transition-transform group-hover:scale-105">
+              <img src="/logo.png" alt="CrowdFund Logo" className="h-full w-auto object-contain" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-[var(--cf-text)]">
+            <span className="text-xl font-bold tracking-tight text-[var(--cf-text)] group-hover:text-[var(--cf-primary)] transition-colors">
               CrowdFund
             </span>
           </Link>

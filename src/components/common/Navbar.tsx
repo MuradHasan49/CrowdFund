@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/Button';
-import { Menu, X, Coins, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
+import { Menu, X, Coins, LogOut, LayoutDashboard, ChevronDown, UserCog } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { CREDIT_PURCHASE_RATE } from '@/lib/constants';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,11 +26,11 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--cf-primary)]">
-                <span className="font-bold text-white">CF</span>
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="flex h-9 items-center justify-center rounded-lg overflow-hidden transition-transform group-hover:scale-105">
+                <img src="/logo.png" alt="CrowdFund Logo" className="h-full w-auto object-contain" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-[var(--cf-text)]">
+              <span className="text-xl font-bold tracking-tight text-[var(--cf-text)] group-hover:text-[var(--cf-primary)] transition-colors">
                 CrowdFund
               </span>
             </Link>
@@ -76,7 +76,7 @@ export default function Navbar() {
                     >
                       <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-[var(--cf-border)]">
                         <img
-                          src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                          src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
                           alt="Avatar"
                           className="h-full w-full object-cover"
                         />
@@ -105,6 +105,15 @@ export default function Navbar() {
                           >
                             <LayoutDashboard className="mr-2 h-4 w-4" />
                             Dashboard
+                          </Link>
+
+                          <Link
+                            href="/dashboard/profile"
+                            className="flex items-center px-4 py-2 text-sm text-[var(--cf-text-muted)] hover:bg-[var(--cf-surface-2)] hover:text-[var(--cf-text)]"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            <UserCog className="mr-2 h-4 w-4" />
+                            Edit Profile
                           </Link>
                           
                           <button

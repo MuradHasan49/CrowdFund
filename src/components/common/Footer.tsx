@@ -10,11 +10,11 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--cf-primary)]">
-                <span className="font-bold text-white">CF</span>
+            <Link href="/" className="flex items-center gap-2 mb-4 group">
+              <div className="flex h-9 items-center justify-center rounded-lg overflow-hidden transition-transform group-hover:scale-105">
+                <img src="/logo.png" alt="CrowdFund Logo" className="h-full w-auto object-contain" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-[var(--cf-text)]">
+              <span className="text-xl font-bold tracking-tight text-[var(--cf-text)] group-hover:text-[var(--cf-primary)] transition-colors">
                 CrowdFund
               </span>
             </Link>

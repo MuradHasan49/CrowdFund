@@ -9,6 +9,7 @@ export interface User {
   role: UserRole;
   credits: number;
   isActive: boolean;
+  photoURL?: string;
   createdAt: string;
 }
 

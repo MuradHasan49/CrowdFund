@@ -5,5 +5,6 @@ export interface User {
   role: 'supporter' | 'creator' | 'admin';
   credits: number;
   isActive: boolean;
+  photoURL?: string;
   createdAt: string;
 }
