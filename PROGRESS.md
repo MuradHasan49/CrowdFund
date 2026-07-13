@@ -316,24 +316,37 @@ feat(layout): Navbar with auth state, Credits badge, and Footer
 
 ---
 
-### 🔄 Phase 10 — Client: Home Page (8 Sections)
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 10 — Client: Home Page (8 Sections)
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
-Steps to do:
-- [ ] Implement `HeroSlider.tsx`
-- [ ] Implement `TopFundedCampaigns.tsx`
-- [ ] Implement `Testimonials.tsx`
-- [ ] Implement `HowItWorks.tsx`
-- [ ] Implement `ExploreByCategory.tsx`
-- [ ] Implement `PlatformStats.tsx`
-- [ ] Implement `Newsletter.tsx`
-- [ ] Implement `CallToAction.tsx`
-- [ ] Assemble all sections in `src/app/(public)/page.tsx`
+#### Steps Done
+- [x] Implemented `HeroSlider.tsx` — Swiper slider with fade transition
+- [x] Implemented `TopFundedCampaigns.tsx` — Fetches top 6 campaigns via TanStack Query
+- [x] Implemented `Testimonials.tsx` — Static slider with 5 testimonials
+- [x] Implemented `HowItWorks.tsx` — 3-step process cards
+- [x] Implemented `ExploreByCategory.tsx` — Grid of categories with Lucide icons
+- [x] Implemented `PlatformStats.tsx` — 4 animated counters using Framer Motion
+- [x] Implemented `Newsletter.tsx` — Email capture with mock success toast
+- [x] Implemented `CallToAction.tsx` — Gradient banner with CTA buttons
+- [x] Assembled all sections in `src/app/(public)/page.tsx`
+
+#### Commit Message
+```
+feat(home): hero slider, top campaigns, testimonials sections
+feat(home): how it works, category grid, platform stats, newsletter, CTA
+```
 
 ---
 
-### ⬜ Phase 11 — Client: Campaigns Explore + Detail
-**Status: NOT STARTED**
+### 🔄 Phase 11 — Client: Campaigns Explore + Detail Pages
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [x] Build `CampaignCard.tsx` (Completed early for Top Funded Campaigns section)
+- [ ] Build `/campaigns` page (Explore) — Grid, search, category filter, sorting
+- [ ] Build `/campaigns/[id]` page (Details) — Fetch `GET /api/campaigns/:id`, show full UI
+- [ ] Build `ContributeModal.tsx` — Inside details page to handle donations
 
 ---
 
@@ -377,7 +390,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 3 |
+| Client | 20+ | 4 |
 
 ---
 
