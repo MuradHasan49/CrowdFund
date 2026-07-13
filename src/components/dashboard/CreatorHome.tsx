@@ -10,8 +10,10 @@ import { FolderOpen, TrendingUp, Inbox } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import toast from 'react-hot-toast';
+import { useCreditStore } from '@/store/creditStore';
 
 export function CreatorHome() {
+  const { fetchCredits } = useCreditStore();
   const { data: campaigns, isLoading: isLoadingCampaigns } = useQuery({
     queryKey: queryKeys.campaigns.mine,
     queryFn: async () => {
@@ -38,6 +40,7 @@ export function CreatorHome() {
       if (res.data.success) {
         toast.success(`Contribution ${action}d successfully`);
         refetchContribs();
+        fetchCredits();
       }
     } catch (error: any) {
       toast.error(error.response?.data?.error || `Failed to ${action} contribution`);

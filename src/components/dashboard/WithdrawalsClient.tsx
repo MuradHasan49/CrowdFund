@@ -13,8 +13,10 @@ import { MIN_WITHDRAWAL_CREDITS, CREDIT_WITHDRAWAL_RATE } from '@/lib/constants'
 import toast from 'react-hot-toast';
 import { Banknote, CreditCard, ShieldAlert } from 'lucide-react';
 import { StatsCard } from '@/components/dashboard/StatsCard';
+import { useCreditStore } from '@/store/creditStore';
 
 export function WithdrawalsClient() {
+  const { fetchCredits } = useCreditStore();
   const { data: campaigns } = useQuery({
     queryKey: queryKeys.campaigns.mine,
     queryFn: async () => {
@@ -63,6 +65,7 @@ export function WithdrawalsClient() {
         toast.success(res.data.message);
         setForm({ ...form, withdrawal_credit: '', account_number: '' });
         refetch();
+        fetchCredits();
       }
     } catch (error: any) {
       toast.error(error.response?.data?.error || 'Failed to submit withdrawal request.');
