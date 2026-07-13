@@ -438,13 +438,15 @@ feat(dashboard/admin): manage users, campaigns, and withdrawal requests
 
 ---
 
-### 🔄 Phase 17 — Final Polish & QA
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 17 — Final Polish & QA
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [ ] Test the entire user flow: Register → Buy Credit → Create Campaign → Admin Approve → Supporter Contribute → Creator Withdraw → Admin Approve Withdraw
-- [ ] Fix any outstanding UI bugs or responsiveness issues
-- [ ] Add empty states and loading skeletons globally where missing
+- [x] Test the entire user flow: Register → Buy Credit → Create Campaign → Admin Approve → Supporter Contribute → Creator Withdraw → Admin Approve Withdraw
+- [x] Fix any outstanding UI bugs or responsiveness issues
+- [x] Add empty states and loading skeletons globally where missing
+- [x] Fix Next.js 16 deprecated middleware to proxy function
 
 ---
 
@@ -463,7 +465,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 10 |
+| Client | 20+ | 11 |
 
 ---
 
