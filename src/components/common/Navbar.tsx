@@ -10,6 +10,7 @@ import { Menu, X, Coins, LogOut, LayoutDashboard, ChevronDown, UserCog } from 'l
 import { formatCurrency } from '@/lib/utils';
 import { CREDIT_PURCHASE_RATE } from '@/lib/constants';
 import { motion, AnimatePresence } from 'framer-motion';
+import { NotificationsDropdown } from './NotificationsDropdown';
 
 export default function Navbar() {
   const { user } = useAuthStore();
@@ -68,6 +69,8 @@ export default function Navbar() {
                       ({formatCurrency(user.credits / CREDIT_PURCHASE_RATE)})
                     </span>
                   </div>
+
+                  <NotificationsDropdown />
 
                   <div className="relative">
                     <button
