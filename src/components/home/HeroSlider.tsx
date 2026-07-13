@@ -68,7 +68,7 @@ export function HeroSlider() {
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--cf-bg)] via-transparent to-transparent opacity-80" />
               
               {/* Content */}
-              <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+              <div className="relative mx-auto flex h-full max-w-7xl items-center px-12 sm:px-16 lg:px-24">
                 <div className="max-w-2xl space-y-6">
                   <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl drop-shadow-md">
                     {slide.title}

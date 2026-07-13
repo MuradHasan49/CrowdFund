@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { cn } from '@/lib/utils';
+import api from '@/lib/api';
+import toast from 'react-hot-toast';
 import { 
   Home, 
   Search, 
@@ -16,7 +18,8 @@ import {
   Users, 
   FileBox, 
   FileCheck, 
-  PieChart 
+  PieChart,
+  LogOut
 } from 'lucide-react';
 
 const MENU_ITEMS = {
@@ -49,10 +52,23 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ isMobileOpen, onCloseMobile }: DashboardSidebarProps) {
   const pathname = usePathname();
-  const { user } = useAuthStore();
+  const router = useRouter();
+  const { user, clearUser } = useAuthStore();
   const role = user?.role || 'supporter';
   
   const links = MENU_ITEMS[role as keyof typeof MENU_ITEMS] || MENU_ITEMS.supporter;
+
+  const handleLogout = async () => {
+    try {
+      await api.post('/auth/logout');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      clearUser();
+      toast.success('Logged out successfully');
+      router.push('/login');
+    }
+  };
 
   return (
     <>
@@ -114,8 +130,16 @@ export function DashboardSidebar({ isMobileOpen, onCloseMobile }: DashboardSideb
           </nav>
         </div>
 
-        <div className="border-t border-[var(--cf-border)] p-4">
-          <div className="rounded-xl bg-[var(--cf-surface-2)] p-4 text-center">
+        <div className="border-t border-[var(--cf-border)] p-4 space-y-4">
+          <button 
+            onClick={handleLogout}
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--cf-surface-2)] px-4 py-2.5 text-sm font-medium text-[var(--cf-text-muted)] transition-colors hover:bg-rose-500/10 hover:text-rose-500"
+          >
+            <LogOut className="h-4 w-4" />
+            Logout
+          </button>
+          
+          <div className="rounded-xl bg-[var(--cf-surface-2)] p-4 text-center hidden lg:block">
             <p className="text-xs text-[var(--cf-text-muted)] mb-2">Need help?</p>
             <Link href="/contact" className="text-sm font-semibold text-[var(--cf-primary)] hover:underline">
               Contact Support

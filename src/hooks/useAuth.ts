@@ -17,7 +17,7 @@ export function useAuth() {
   const { data, isLoading, isError } = useQuery({
     queryKey: queryKeys.auth.me,
     queryFn: async () => {
-      const res = await api.get<{ success: boolean; data: User }>('/auth/me');
+      const res = await api.get<{ success: boolean; data: User | null }>('/auth/me');
       return res.data.data;
     },
     retry: false, // Don't retry if unauthorized
@@ -32,7 +32,7 @@ export function useAuth() {
 
     if (data) {
       setUser(data);
-    } else if (isError) {
+    } else if (data === null || isError) {
       clearUser();
     }
     setInitializing(false);
