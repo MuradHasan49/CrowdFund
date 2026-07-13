@@ -1,1 +1,10 @@
-export default function manageusers() { return <div>(dashboard)/dashboard/manage-users/page.tsx</div>; }
+import { ManageUsersClient } from '@/components/dashboard/ManageUsersClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Manage Users | Admin | CrowdFund',
+};
+
+export default function ManageUsersPage() {
+  return <ManageUsersClient />;
+}

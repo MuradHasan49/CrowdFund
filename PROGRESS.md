@@ -422,13 +422,29 @@ feat(dashboard/supporter): purchase-credit flow and history
 
 ---
 
-### 🔄 Phase 16 — Client: Admin Dashboard Pages
+### ✅ Phase 16 — Client: Admin Dashboard Pages
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
+
+Steps to do:
+- [x] Build `/dashboard/manage-users` | Table of users + block/unblock (if applicable) or delete
+- [x] Build `/dashboard/manage-campaigns` | Table of active campaigns + ability to pause/delete
+- [x] Build `/dashboard/withdrawal-requests` | Table of pending requests + Approve/Reject actions
+
+#### Commit Message
+```
+feat(dashboard/admin): manage users, campaigns, and withdrawal requests
+```
+
+---
+
+### 🔄 Phase 17 — Final Polish & QA
 **Status: IN PROGRESS — Next Phase**
 
 Steps to do:
-- [ ] Build `/dashboard/manage-users` | Table of users + block/unblock (if applicable) or delete
-- [ ] Build `/dashboard/manage-campaigns` | Table of active campaigns + ability to pause/delete
-- [ ] Build `/dashboard/withdrawal-requests` | Table of pending requests + Approve/Reject actions
+- [ ] Test the entire user flow: Register → Buy Credit → Create Campaign → Admin Approve → Supporter Contribute → Creator Withdraw → Admin Approve Withdraw
+- [ ] Fix any outstanding UI bugs or responsiveness issues
+- [ ] Add empty states and loading skeletons globally where missing
 
 ---
 
@@ -447,7 +463,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 9 |
+| Client | 20+ | 10 |
 
 ---
 

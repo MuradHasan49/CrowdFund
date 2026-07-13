@@ -1,1 +1,10 @@
-export default function withdrawalrequests() { return <div>(dashboard)/dashboard/withdrawal-requests/page.tsx</div>; }
+import { WithdrawalRequestsClient } from '@/components/dashboard/WithdrawalRequestsClient';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Withdrawal Requests | Admin | CrowdFund',
+};
+
+export default function WithdrawalRequestsPage() {
+  return <WithdrawalRequestsClient />;
+}
