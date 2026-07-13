@@ -407,17 +407,28 @@ feat(dashboard/creator): add-campaign form, my-campaigns, withdrawals, payment-h
 
 ---
 
-### 🔄 Phase 15 — Client: Supporter Dashboard Pages
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 15 — Client: Supporter Dashboard Pages
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [ ] Build `/dashboard/purchase-credit` | Input amount → auto-calc credits → simulated Stripe flow
-- [ ] Ensure Supporter Payment History view works (we already built the component logic)
+- [x] Build `/dashboard/purchase-credit` | Input amount → auto-calc credits → simulated Stripe flow
+- [x] Ensure Supporter Payment History view works (we already built the component logic)
+
+#### Commit Message
+```
+feat(dashboard/supporter): purchase-credit flow and history
+```
 
 ---
 
-### ⬜ Phase 16 — Client: Additional Pages
-**Status: NOT STARTED**
+### 🔄 Phase 16 — Client: Admin Dashboard Pages
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Build `/dashboard/manage-users` | Table of users + block/unblock (if applicable) or delete
+- [ ] Build `/dashboard/manage-campaigns` | Table of active campaigns + ability to pause/delete
+- [ ] Build `/dashboard/withdrawal-requests` | Table of pending requests + Approve/Reject actions
 
 ---
 
@@ -436,7 +447,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 8 |
+| Client | 20+ | 9 |
 
 ---
 
