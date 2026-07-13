@@ -373,19 +373,31 @@ feat(dashboard): role-based sidebar layout with responsive collapse
 
 ---
 
-### 🔄 Phase 13 — Client: Dashboard Home (Supporter & Creator)
-**Status: IN PROGRESS — Next Phase**
+### ✅ Phase 13 — Client: Dashboard Home (Supporter & Creator)
+**Status: COMPLETE**  
+**Completed:** 2026-07-13
 
 Steps to do:
-- [ ] Build `src/app/(dashboard)/dashboard/page.tsx` — Branch based on user role
-- [ ] Build Supporter Dashboard: Shows total credits, latest contribution, recommended campaigns
-- [ ] Build Creator Dashboard: Shows total raised, active campaigns, latest contributions received
-- [ ] Add `StatsCard.tsx` for metrics
+- [x] Build `src/app/(dashboard)/dashboard/page.tsx` — Branch based on user role
+- [x] Build Supporter Dashboard: Shows total credits, latest contribution, recommended campaigns
+- [x] Build Creator Dashboard: Shows total raised, active campaigns, latest contributions received
+- [x] Add `StatsCard.tsx` for metrics
+
+#### Commit Message
+```
+feat(dashboard): role-based dashboard home for supporter and creator
+```
 
 ---
 
-### ⬜ Phase 14 — Client: Creator Dashboard Pages
-**Status: NOT STARTED**
+### 🔄 Phase 14 — Client: Creator Dashboard Pages
+**Status: IN PROGRESS — Next Phase**
+
+Steps to do:
+- [ ] Build `/dashboard/add-campaign` | Full form with all fields + imgBB upload
+- [ ] Build `/dashboard/my-campaigns` | Table sorted by deadline + Update modal + Delete confirm
+- [ ] Build `/dashboard/withdrawals` | Credit summary + Withdrawal form with guard
+- [ ] Build `/dashboard/payment-history` (Creator view)
 
 ---
 
@@ -414,7 +426,7 @@ Steps to do:
 | Repo | Target | Done |
 |------|--------|------|
 | Server | 12+ | 6 |
-| Client | 20+ | 6 |
+| Client | 20+ | 7 |
 
 ---
 
