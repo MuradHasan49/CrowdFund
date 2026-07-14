@@ -2,8 +2,9 @@
 
 > **Empower creators. Support ideas. Build communities.**
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-crowdfund.vercel.app-6C47FF?style=for-the-badge)](https://crowdfund.vercel.app)
-[![Repository](https://img.shields.io/badge/GitHub-Repo-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund)
+[![Live Site (Vercel)](https://img.shields.io/badge/Live%20Site-crowdfund.vercel.app-6C47FF?style=for-the-badge)](https://crowdfund.vercel.app)
+[![Client Repo](https://img.shields.io/badge/GitHub-Client-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund/tree/main/client)
+[![Server Repo](https://img.shields.io/badge/GitHub-Server-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund/tree/main/Server)
 
 ---
 
@@ -11,26 +12,6 @@
 
 **URL:** `https://crowdfund.vercel.app` *(update after deployment)*
 
----
-
-## 🔑 Admin Credentials
-
-| Field    | Value                    |
-|----------|--------------------------|
-| Email    | `admin@crowdfund.com`    |
-| Password | `Admin@12345`            |
-
-## 🔑 Demo Credentials
-
-| Role      | Email                     | Password     |
-|-----------|---------------------------|--------------|
-| Admin     | `admin@crowdfund.com`     | `Admin@12345`|
-| Creator   | `creator@demo.com`        | `Aa123456`   |
-| Supporter | `supporter@supporter.com` | `Aa12345678` |
-
-> ⚠️ For assessment purposes only. Demo accounts auto-fill on the `/login` page.
-
----
 
 ## 🚀 Key Features
 
@@ -204,47 +185,6 @@ New Supporter signup: +50 credits (one-time)
 New Creator signup:   +20 credits (one-time)
 ```
 
----
-
-## 📋 Git Commit Log Summary
-
-### Client (target: 20+ commits)
-- `feat(config): initialize Next.js 16 project with TypeScript and Tailwind v4`
-- `feat(design): implement global CSS tokens and design system`
-- `feat(layout): build Navbar with responsive hamburger menu and credit badge`
-- `feat(home): implement hero slider with Swiper carousel`
-- `feat(home): add top funded campaigns section with live data`
-- `feat(home): build testimonials, how-it-works, stats, and CTA sections`
-- `feat(auth): implement registration page with role selection and validation`
-- `feat(auth): implement login page with Google OAuth and demo credentials`
-- `feat(auth): add JWT localStorage persistence and Zustand auth store`
-- `feat(middleware): protect dashboard routes with Next.js middleware`
-- `feat(campaigns): build campaign listing page with search and filters`
-- `feat(campaigns): implement campaign detail page with contribute modal`
-- `feat(dashboard): create role-based sidebar navigation`
-- `feat(dashboard/supporter): implement my-contributions table with status`
-- `feat(dashboard/supporter): build purchase credit page with Stripe`
-- `feat(dashboard/creator): implement add-campaign form with imgBB upload`
-- `feat(dashboard/creator): build my-campaigns table with update/delete`
-- `feat(dashboard/creator): implement withdrawal form with credit guard`
-- `feat(dashboard/admin): build manage-users table with role management`
-- `feat(dashboard/admin): implement campaign approval workflow`
-
-### Server (target: 12+ commits)
-- `feat(config): initialize Express 5 TypeScript server`
-- `feat(db): configure MongoDB connection with Mongoose`
-- `feat(models): create User, Campaign, Contribution, Withdrawal schemas`
-- `feat(auth): implement registration, login with JWT and bcrypt`
-- `feat(auth): add Google OAuth endpoint`
-- `feat(middleware): build authMiddleware and roleGuard`
-- `feat(campaigns): implement CRUD routes with status workflow`
-- `feat(contributions): build contribution create, approve, reject routes`
-- `feat(withdrawals): implement withdrawal request and admin approval`
-- `feat(credits): add credit purchase endpoint with Stripe integration`
-- `feat(users): add admin user management routes`
-- `chore(security): add rate limiting, CORS config, error handler`
-
----
 
 ## 🌍 Deployment
 
