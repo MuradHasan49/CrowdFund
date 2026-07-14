@@ -29,7 +29,7 @@ export function SocialLoginButtons({ isLoading, role = 'supporter' }: SocialLogi
       setUser(data.data);
       queryClient.setQueryData(queryKeys.auth.me, data.data);
       toast.success('Social authentication successful!');
-      router.push('/dashboard');
+      window.location.href = '/dashboard';
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.error || 'Social authentication failed. Please try again.');

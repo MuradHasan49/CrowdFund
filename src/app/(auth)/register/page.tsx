@@ -55,7 +55,7 @@ export default function RegisterPage() {
       setUser(data.data);
       queryClient.setQueryData(queryKeys.auth.me, data.data);
       toast.success('Account created successfully!');
-      router.push('/dashboard');
+      window.location.href = '/dashboard';
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.error || 'Registration failed. Please try again.');

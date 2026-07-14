@@ -40,7 +40,7 @@ export default function LoginPage() {
       setUser(data.data);
       queryClient.setQueryData(queryKeys.auth.me, data.data);
       toast.success('Logged in successfully!');
-      router.push('/dashboard');
+      window.location.href = '/dashboard';
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.error || 'Login failed. Please try again.');
