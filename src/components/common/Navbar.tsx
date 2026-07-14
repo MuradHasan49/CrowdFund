@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/Button';
-import { Menu, X, Coins, LogOut, LayoutDashboard, ChevronDown, UserCog } from 'lucide-react';
+import { Menu, X, Coins, LogOut, LayoutDashboard, ChevronDown, UserCog, Home, Compass, Info, Phone, CreditCard } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { CREDIT_PURCHASE_RATE } from '@/lib/constants';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -41,24 +41,73 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-6">
               <Link
+                href="/"
+                className={`flex items-center text-sm font-medium transition-colors ${
+                  isActive('/')
+                    ? 'text-[var(--cf-primary)]'
+                    : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
+                }`}
+              >
+                <Home className="mr-1.5 h-4 w-4" />
+                Home
+              </Link>
+              <Link
                 href="/campaigns"
-                className={`text-sm font-medium transition-colors ${
+                className={`flex items-center text-sm font-medium transition-colors ${
                   isActive('/campaigns')
                     ? 'text-[var(--cf-primary)]'
                     : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
                 }`}
               >
+                <Compass className="mr-1.5 h-4 w-4" />
                 Explore
+              </Link>
+              <Link
+                href="/about"
+                className={`flex items-center text-sm font-medium transition-colors ${
+                  isActive('/about')
+                    ? 'text-[var(--cf-primary)]'
+                    : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
+                }`}
+              >
+                <Info className="mr-1.5 h-4 w-4" />
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className={`flex items-center text-sm font-medium transition-colors ${
+                  isActive('/contact')
+                    ? 'text-[var(--cf-primary)]'
+                    : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
+                }`}
+              >
+                <Phone className="mr-1.5 h-4 w-4" />
+                Contact
               </Link>
 
               {user ? (
                 <>
                   <Link
                     href="/dashboard"
-                    className="text-sm font-medium text-[var(--cf-text-muted)] hover:text-[var(--cf-text)] transition-colors"
+                    className={`flex items-center text-sm font-medium transition-colors ${
+                      isActive('/dashboard') ? 'text-[var(--cf-primary)]' : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
+                    }`}
                   >
+                    <LayoutDashboard className="mr-1.5 h-4 w-4" />
                     Dashboard
                   </Link>
+
+                  {user.role !== 'admin' && (
+                    <Link
+                      href="/dashboard/purchase-credit"
+                      className={`flex items-center text-sm font-medium transition-colors ${
+                        isActive('/dashboard/purchase-credit') ? 'text-[var(--cf-primary)]' : 'text-[var(--cf-text-muted)] hover:text-[var(--cf-text)]'
+                      }`}
+                    >
+                      <CreditCard className="mr-1.5 h-4 w-4" />
+                      Buy Credits
+                    </Link>
+                  )}
 
                   <div className="flex items-center gap-2 rounded-full bg-[var(--cf-surface-2)] px-3 py-1.5 border border-[var(--cf-border)]">
                     <Coins className="h-4 w-4 text-[var(--cf-secondary)]" />
@@ -174,22 +223,58 @@ export default function Navbar() {
           >
             <div className="space-y-1 px-4 pb-3 pt-2">
               <Link
-                href="/campaigns"
-                className="block rounded-md px-3 py-2 text-base font-medium text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]"
+                href="/"
+                className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
                 onClick={() => setIsOpen(false)}
               >
+                <Home className="mr-3 h-5 w-5" />
+                Home
+              </Link>
+              <Link
+                href="/campaigns"
+                className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/campaigns') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
+                onClick={() => setIsOpen(false)}
+              >
+                <Compass className="mr-3 h-5 w-5" />
                 Explore
+              </Link>
+              <Link
+                href="/about"
+                className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/about') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
+                onClick={() => setIsOpen(false)}
+              >
+                <Info className="mr-3 h-5 w-5" />
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/contact') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
+                onClick={() => setIsOpen(false)}
+              >
+                <Phone className="mr-3 h-5 w-5" />
+                Contact
               </Link>
               
               {user ? (
                 <>
                   <Link
                     href="/dashboard"
-                    className="block rounded-md px-3 py-2 text-base font-medium text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]"
+                    className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/dashboard') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
                     onClick={() => setIsOpen(false)}
                   >
+                    <LayoutDashboard className="mr-3 h-5 w-5" />
                     Dashboard
                   </Link>
+                  {user.role !== 'admin' && (
+                    <Link
+                      href="/dashboard/purchase-credit"
+                      className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/dashboard/purchase-credit') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <CreditCard className="mr-3 h-5 w-5" />
+                      Buy Credits
+                    </Link>
+                  )}
                   
                   <div className="flex items-center gap-2 px-3 py-2">
                     <Coins className="h-5 w-5 text-[var(--cf-secondary)]" />

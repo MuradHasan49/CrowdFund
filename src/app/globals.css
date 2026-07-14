@@ -10,6 +10,13 @@
   --cf-border: #2A2D40;
   --cf-text: #E8EAFF;
   --cf-text-muted: #8890B0;
+  color-scheme: dark;
+}
+
+/* Fix for native date picker icon visibility in dark theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0) invert(1);
+  cursor: pointer;
 }
 
 @theme inline {

@@ -11,10 +11,12 @@ import { Clock, TrendingUp, Users, Target, ShieldCheck, User } from 'lucide-reac
 import { useAuthStore } from '@/store/authStore';
 import { ContributeModal } from '@/components/campaigns/ContributeModal';
 import { CampaignCard } from '@/components/campaigns/CampaignCard';
+import { ContactCreatorModal } from '@/components/campaigns/ContactCreatorModal';
 
 export function CampaignDetailsClient({ id }: { id: string }) {
   const { user } = useAuthStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const { data: campaign, isLoading, isError, refetch } = useQuery({
     queryKey: queryKeys.campaigns.detail(id),
@@ -183,7 +185,7 @@ export function CampaignDetailsClient({ id }: { id: string }) {
                   <p className="text-xs text-[var(--cf-text-muted)]">Campaign Creator</p>
                 </div>
               </div>
-              <Button variant="outline" className="w-full" onClick={() => alert('Contact feature coming soon!')}>
+              <Button variant="outline" className="w-full" onClick={() => setIsContactModalOpen(true)}>
                 Contact Creator
               </Button>
             </div>
@@ -212,6 +214,12 @@ export function CampaignDetailsClient({ id }: { id: string }) {
         campaignId={campaign.id}
         minContribution={campaign.minimum_contribution}
         onSuccess={() => refetch()}
+      />
+
+      <ContactCreatorModal 
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        creatorName={campaign.creator_name}
       />
     </div>
   );

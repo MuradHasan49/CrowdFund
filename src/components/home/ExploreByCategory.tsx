@@ -1,15 +1,13 @@
 import Link from 'next/link';
-import { Monitor, HeartPulse, Palette, Leaf, Code, Gamepad2, Film, Music } from 'lucide-react';
+import { Monitor, HeartPulse, Palette, Users, GraduationCap, LayoutGrid } from 'lucide-react';
 
 const categories = [
   { id: 'tech', name: 'Technology', icon: Monitor, color: 'text-blue-400', bg: 'bg-blue-400/10' },
-  { id: 'health', name: 'Health & Wellness', icon: HeartPulse, color: 'text-rose-400', bg: 'bg-rose-400/10' },
-  { id: 'art', name: 'Art & Design', icon: Palette, color: 'text-purple-400', bg: 'bg-purple-400/10' },
-  { id: 'env', name: 'Environment', icon: Leaf, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
-  { id: 'software', name: 'Software', icon: Code, color: 'text-cyan-400', bg: 'bg-cyan-400/10' },
-  { id: 'games', name: 'Games', icon: Gamepad2, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
-  { id: 'film', name: 'Film & Video', icon: Film, color: 'text-amber-400', bg: 'bg-amber-400/10' },
-  { id: 'music', name: 'Music', icon: Music, color: 'text-pink-400', bg: 'bg-pink-400/10' },
+  { id: 'art', name: 'Art', icon: Palette, color: 'text-purple-400', bg: 'bg-purple-400/10' },
+  { id: 'community', name: 'Community', icon: Users, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
+  { id: 'health', name: 'Health', icon: HeartPulse, color: 'text-rose-400', bg: 'bg-rose-400/10' },
+  { id: 'education', name: 'Education', icon: GraduationCap, color: 'text-amber-400', bg: 'bg-amber-400/10' },
+  { id: 'other', name: 'Other', icon: LayoutGrid, color: 'text-slate-400', bg: 'bg-slate-400/10' },
 ];
 
 export function ExploreByCategory() {
@@ -21,11 +19,11 @@ export function ExploreByCategory() {
             Explore by Category
           </h2>
           <p className="text-lg text-[var(--cf-text-muted)] max-w-2xl">
-            Find the projects that resonate with your passions. From cutting-edge tech to indie films, there's something for everyone.
+            Find the projects that resonate with your passions. From cutting-edge tech to local community initiatives, there's something for everyone.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {categories.map((cat) => {
             const Icon = cat.icon;
             return (

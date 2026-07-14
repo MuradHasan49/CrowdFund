@@ -58,9 +58,9 @@ export function SupporterHome() {
         />
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="space-y-12">
         {/* Recent Contributions */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-[var(--cf-text)]">Recent Contributions</h2>
             <Link href="/dashboard/my-contributions" className="text-sm font-medium text-[var(--cf-primary)] hover:underline flex items-center gap-1">
@@ -112,13 +112,13 @@ export function SupporterHome() {
         </div>
 
         {/* Recommended Campaigns */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-[var(--cf-text)]">Recommended for you</h2>
           </div>
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {isLoadingRecs ? (
-              <div className="h-64 rounded-xl bg-[var(--cf-surface)] animate-pulse" />
+              [...Array(3)].map((_, i) => <div key={i} className="h-[400px] rounded-xl bg-[var(--cf-surface)] animate-pulse" />)
             ) : (
               recommended?.map(campaign => (
                 <CampaignCard key={campaign.id} campaign={campaign} />
