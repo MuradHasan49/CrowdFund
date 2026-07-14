@@ -52,8 +52,16 @@ export default function LoginPage() {
   };
 
   const fillDemo = (role: 'supporter' | 'creator' | 'admin') => {
-    setValue('email', `${role}@demo.com`);
-    setValue('password', '123456');
+    if (role === 'admin') {
+      setValue('email', 'admin@crowdfund.com');
+      setValue('password', 'Admin@12345');
+    } else if (role === 'supporter') {
+      setValue('email', 'supporter@supporter.com');
+      setValue('password', 'Aa12345678');
+    } else if (role === 'creator') {
+      setValue('email', 'creator@demo.com');
+      setValue('password', 'Aa123456');
+    }
     toast.success(`${role} demo credentials filled`);
   };
 

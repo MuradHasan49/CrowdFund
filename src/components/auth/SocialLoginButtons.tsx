@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useGoogleLogin } from '@react-oauth/google';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Button } from '@/components/ui/Button';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
@@ -75,6 +75,7 @@ export function SocialLoginButtons({ isLoading, role = 'supporter' }: SocialLogi
           </Button>
         </div>
 
+        {/* Facebook Provider Temporarily Hidden
         <div className="w-full">
           <FacebookLogin
             appId={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID || 'dummy_id_prevent_crash'}
@@ -101,6 +102,7 @@ export function SocialLoginButtons({ isLoading, role = 'supporter' }: SocialLogi
             )}
           />
         </div>
+        */}
       </div>
     </div>
   );
