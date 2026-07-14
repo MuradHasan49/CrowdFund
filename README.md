@@ -21,7 +21,7 @@
 
 ---
 
-## 🔑 Demo Credentials *(Click to copy)*
+## 🔑 Demo Credentials
 
 **Supporter:**
 - Email: `supporter@supporter.com`
@@ -221,6 +221,5 @@ New Creator signup:   +20 credits (one-time)
 
 ## 📞 Contact & Links
 
-- **GitHub Repository:** [github.com/MuradHasan49/CrowdFund](https://github.com/MuradHasan49/CrowdFund)
 - **LinkedIn:** [linkedin.com/in/murad-hasan](https://linkedin.com/in/murad-hasan)
 - **Portfolio:** [muradhasan49.vercel.app](https://muradhasan49.vercel.app/)
