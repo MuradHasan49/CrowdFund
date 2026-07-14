@@ -40,7 +40,11 @@ export default function LoginPage() {
       setUser(data.data);
       queryClient.setQueryData(queryKeys.auth.me, data.data);
       toast.success('Logged in successfully!');
-      window.location.href = '/dashboard';
+      if (data.data.role === 'supporter') {
+        window.location.href = '/campaigns';
+      } else {
+        window.location.href = '/dashboard';
+      }
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.error || 'Login failed. Please try again.');
