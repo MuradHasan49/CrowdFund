@@ -3,8 +3,7 @@
 > **Empower creators. Support ideas. Build communities.**
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-crowdfund.vercel.app-6C47FF?style=for-the-badge)](https://crowdfund.vercel.app)
-[![Client Repo](https://img.shields.io/badge/GitHub-Client-161827?style=for-the-badge&logo=github)](https://github.com/your-username/crowdfund-client)
-[![Server Repo](https://img.shields.io/badge/GitHub-Server-161827?style=for-the-badge&logo=github)](https://github.com/your-username/crowdfund-server)
+[![Repository](https://img.shields.io/badge/GitHub-Repo-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund)
 
 ---
 
@@ -21,7 +20,15 @@
 | Email    | `admin@crowdfund.com`    |
 | Password | `Admin@12345`            |
 
-> ⚠️ For assessment purposes only. Change before production use.
+## 🔑 Demo Credentials
+
+| Role      | Email                     | Password     |
+|-----------|---------------------------|--------------|
+| Admin     | `admin@crowdfund.com`     | `Admin@12345`|
+| Creator   | `creator@demo.com`        | `Aa123456`   |
+| Supporter | `supporter@supporter.com` | `Aa12345678` |
+
+> ⚠️ For assessment purposes only. Demo accounts auto-fill on the `/login` page.
 
 ---
 
@@ -121,11 +128,11 @@ SCIC13/
 - Google OAuth credentials
 - imgBB API key (optional)
 
-### 1. Clone Repositories
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/crowdfund-client.git
-git clone https://github.com/your-username/crowdfund-server.git
+git clone https://github.com/MuradHasan49/CrowdFund.git
+cd CrowdFund
 ```
 
 ### 2. Server Setup
@@ -259,6 +266,5 @@ New Creator signup:   +20 credits (one-time)
 
 ## 📞 Contact & Links
 
-- **GitHub (Client):** [github.com/your-username/crowdfund-client](https://github.com/your-username)
-- **GitHub (Server):** [github.com/your-username/crowdfund-server](https://github.com/your-username)
-- **LinkedIn:** [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
+- **GitHub Repository:** [github.com/MuradHasan49/CrowdFund](https://github.com/MuradHasan49/CrowdFund)
+- **LinkedIn:** [linkedin.com/in/murad-hasan](https://linkedin.com/in/murad-hasan)
