@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/lib/queryKeys';
@@ -58,6 +60,9 @@ export function CampaignDetailsClient({ id }: { id: string }) {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-[var(--cf-text)]">Campaign not found</h2>
           <p className="mt-2 text-[var(--cf-text-muted)]">It may have been removed or the URL is incorrect.</p>
+          <Button asChild className="mt-6">
+            <Link href="/campaigns">Explore other campaigns</Link>
+          </Button>
         </div>
       </div>
     );

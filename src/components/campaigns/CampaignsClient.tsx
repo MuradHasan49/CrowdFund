@@ -31,7 +31,7 @@ export function CampaignsClient() {
   
   const [category, setCategory] = useState('All');
   const [status, setStatus] = useState<'active' | 'all'>('active');
-  const [sort, setSort] = useState('raised');
+  const [sort, setSort] = useState('newest');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(8);
   const [isMounted, setIsMounted] = useState(false);

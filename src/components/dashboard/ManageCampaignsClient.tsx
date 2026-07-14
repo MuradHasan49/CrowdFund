@@ -16,7 +16,7 @@ export function ManageCampaignsClient() {
   const { data: campaigns, isLoading, refetch } = useQuery({
     queryKey: ['admin-campaigns', filter],
     queryFn: async () => {
-      const res = await api.get<{ data: Campaign[] }>(`/campaigns?status=${filter}&limit=100`);
+      const res = await api.get<{ data: Campaign[] }>(`/campaigns?status=${filter}&sort=newest&limit=100`);
       return res.data.data;
     },
   });
