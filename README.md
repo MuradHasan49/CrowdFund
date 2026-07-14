@@ -2,15 +2,38 @@
 
 > **Empower creators. Support ideas. Build communities.**
 
-[![Live Site (Vercel)](https://img.shields.io/badge/Live%20Site-crowdfund.vercel.app-6C47FF?style=for-the-badge)](https://crowdfund.vercel.app)
-[![Client Repo](https://img.shields.io/badge/GitHub-Client-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund/tree/main/client)
-[![Server Repo](https://img.shields.io/badge/GitHub-Server-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund/tree/main/Server)
+[![Live Site (Vercel)](https://img.shields.io/badge/Live%20Site-crowd--fund--topaz.vercel.app-6C47FF?style=for-the-badge)](https://crowd-fund-topaz.vercel.app/)
+[![Client Repo](https://img.shields.io/badge/GitHub-Client-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund)
+[![Server Repo](https://img.shields.io/badge/GitHub-Server-161827?style=for-the-badge&logo=github)](https://github.com/MuradHasan49/CrowdFund-server)
 
 ---
 
 ## 🌐 Live Site
 
-**URL:** `https://crowdfund.vercel.app` *(update after deployment)*
+**URL:** `https://crowd-fund-topaz.vercel.app/`
+
+---
+
+## 📂 Repositories
+
+- **Client Repository:** `https://github.com/MuradHasan49/CrowdFund`
+- **Server Repository:** `https://github.com/MuradHasan49/CrowdFund-server`
+
+---
+
+## 🔑 Demo Credentials *(Click to copy)*
+
+**Supporter:**
+- Email: `supporter@supporter.com`
+- Password: `Aa12345678`
+
+**Creator:**
+- Email: `creator@demo.com`
+- Password: `Aa123456`
+
+**Admin:**
+- Email: `admin@crowdfund.com`
+- Password: `Admin@12345`
 
 
 ## 🚀 Key Features
@@ -77,8 +100,7 @@
 
 ## 📂 Project Structure
 
-```
-SCIC13/
+```text
 ├── client/          # Next.js 16 frontend
 │   ├── src/
 │   │   ├── app/     # App Router pages & layouts
@@ -87,14 +109,10 @@ SCIC13/
 │   │   ├── lib/
 │   │   ├── store/
 │   │   └── types/
-│   ├── AGENTS.md
-│   ├── PRD.md
-│   └── ARCHITECTURE.md
 │
 └── Server/          # Express 5 backend (single file)
     ├── index.ts     ← ALL server code: models, middleware, routes, logic
     ├── .env         ← Never committed
-    ├── AGENTS.md
     ├── package.json
     └── tsconfig.json
 ```
@@ -109,29 +127,34 @@ SCIC13/
 - Google OAuth credentials
 - imgBB API key (optional)
 
-### 1. Clone Repository
+### 1. Clone Repositories
 
+**Client:**
 ```bash
 git clone https://github.com/MuradHasan49/CrowdFund.git
 cd CrowdFund
 ```
 
+**Server:**
+```bash
+git clone https://github.com/MuradHasan49/CrowdFund-server.git
+cd CrowdFund-server
+```
+
 ### 2. Server Setup
 
 ```bash
-cd SCIC13/Server
+cd CrowdFund-server
 npm install
 ```
 
-Create `Server/.env`:
+Create `.env`:
 ```env
 PORT=8000
 MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/crowdfund
 JWT_SECRET=your_super_secret_jwt_key_min_32_chars
 JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
 ```
 
 ```bash
@@ -141,7 +164,7 @@ npm run dev    # starts on http://localhost:8000
 ### 3. Client Setup
 
 ```bash
-cd SCIC13/client
+cd CrowdFund
 npm install
 ```
 
@@ -191,16 +214,8 @@ New Creator signup:   +20 credits (one-time)
 | Service  | Platform        |
 |----------|-----------------|
 | Frontend | Vercel          |
-| Backend  | Railway / Render|
-| Database | MongoDB Atlas   |
-
----
-
-## 📄 Documentation
-
-- [AGENTS.md](./AGENTS.md) — AI agent rules, coding standards, design system
-- [PRD.md](./PRD.md) — Full product requirements and acceptance criteria
-- [ARCHITECTURE.md](./ARCHITECTURE.md) — System design, data flows, security
+| Backend  | Vercel          |
+| Database | MongoDB         |
 
 ---
 
@@ -208,3 +223,4 @@ New Creator signup:   +20 credits (one-time)
 
 - **GitHub Repository:** [github.com/MuradHasan49/CrowdFund](https://github.com/MuradHasan49/CrowdFund)
 - **LinkedIn:** [linkedin.com/in/murad-hasan](https://linkedin.com/in/murad-hasan)
+- **Portfolio:** [muradhasan49.vercel.app](https://muradhasan49.vercel.app/)
