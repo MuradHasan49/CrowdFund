@@ -34,17 +34,20 @@ export default function RegisterPage() {
   const queryClient = useQueryClient();
   const setUser = useAuthStore((state) => state.setUser);
   
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       role: 'supporter',
     }
   });
 
+  const selectedRole = watch('role');
+
   const registerMutation = useMutation({
     mutationFn: async (data: RegisterFormValues) => {
-      // The server doesn't take confirmPassword
-      const { confirmPassword, ...payload } = data;
+      // The server expects photoURL (capital URL)
+      const { confirmPassword, photoUrl, ...rest } = data;
+      const payload = { ...rest, photoURL: photoUrl };
       const res = await api.post('/auth/register', payload);
       return res.data;
     },
@@ -148,7 +151,7 @@ export default function RegisterPage() {
             </Button>
           </form>
 
-          <SocialLoginButtons isLoading={registerMutation.isPending} />
+          <SocialLoginButtons isLoading={registerMutation.isPending} role={selectedRole} />
         </div>
       </div>
     </div>

@@ -96,7 +96,7 @@ export default function ProfilePage() {
             <div className="relative group">
               <div className="h-28 w-28 rounded-full border-4 border-[var(--cf-bg)] overflow-hidden bg-[var(--cf-surface-2)] shadow-md">
                 {photoURL ? (
-                  <img src={photoURL} alt="Profile" className="h-full w-full object-cover" />
+                  <img src={photoURL} alt="Profile" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                 ) : user.email ? (
                   <img src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`} alt="Avatar" className="h-full w-full object-cover" />
                 ) : (
@@ -180,14 +180,14 @@ export default function ProfilePage() {
               <Input
                 label="Role"
                 id="role"
-                value={user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                value={(user.role || 'supporter').charAt(0).toUpperCase() + (user.role || 'supporter').slice(1)}
                 disabled
                 className="opacity-70 cursor-not-allowed bg-[var(--cf-bg)]"
               />
               <Input
                 label="Available Credits"
                 id="credits"
-                value={user.credits.toLocaleString()}
+                value={(user.credits || 0).toLocaleString()}
                 disabled
                 className="opacity-70 cursor-not-allowed bg-[var(--cf-bg)]"
               />

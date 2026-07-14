@@ -55,13 +55,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
-                  How it Works
+                <Link href="/dashboard/add-campaign" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
+                  Start a Campaign
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
-                  Pricing & Fees
+                <Link href="/dashboard" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
+                  My Dashboard
                 </Link>
               </li>
             </ul>
@@ -78,11 +78,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
                 <Link href="/blog" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
                   Blog
                 </Link>
@@ -96,13 +91,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/help" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link href="/trust" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
-                  Trust & Safety
+                <Link href="/faq" className="text-sm text-[var(--cf-text-muted)] hover:text-[var(--cf-primary)] transition-colors">
+                  FAQ
                 </Link>
               </li>
               <li>

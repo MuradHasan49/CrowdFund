@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { useAuthStore } from '@/store/authStore';
-import { useCreditStore } from '@/store/creditStore';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { X, HandCoins } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
+import { queryKeys } from '@/lib/queryKeys';
 
 interface ContributeModalProps {
   campaignId: string;
@@ -20,7 +21,7 @@ interface ContributeModalProps {
 
 export function ContributeModal({ campaignId, minContribution, isOpen, onClose, onSuccess }: ContributeModalProps) {
   const { user, isAuthenticated } = useAuthStore();
-  const { credits, fetchCredits } = useCreditStore();
+  const queryClient = useQueryClient();
   const router = useRouter();
 
   const [amount, setAmount] = useState<number | ''>(minContribution);
@@ -55,7 +56,7 @@ export function ContributeModal({ campaignId, minContribution, isOpen, onClose, 
       toast.error(`Minimum contribution is ${minContribution} credits.`);
       return;
     }
-    if (amount > credits) {
+    if (amount > (user?.credits || 0)) {
       toast.error('Insufficient credits. Please purchase more.');
       return;
     }
@@ -70,7 +71,7 @@ export function ContributeModal({ campaignId, minContribution, isOpen, onClose, 
 
       if (res.data.success) {
         toast.success('Contribution successful! Thank you for your support.');
-        fetchCredits(); // Refresh user credits
+        queryClient.invalidateQueries({ queryKey: queryKeys.auth.me }); // Refresh user credits
         onSuccess();
         onClose();
       }
@@ -100,7 +101,7 @@ export function ContributeModal({ campaignId, minContribution, isOpen, onClose, 
         <div className="p-6">
           <div className="mb-6 rounded-lg bg-[var(--cf-bg)] p-4 text-center border border-[var(--cf-border)]">
             <p className="text-sm text-[var(--cf-text-muted)]">Available Balance</p>
-            <p className="text-3xl font-extrabold text-[var(--cf-primary)]">{credits.toLocaleString()} <span className="text-base font-medium">Credits</span></p>
+            <p className="text-3xl font-extrabold text-[var(--cf-primary)]">{(user?.credits || 0).toLocaleString()} <span className="text-base font-medium">Credits</span></p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">

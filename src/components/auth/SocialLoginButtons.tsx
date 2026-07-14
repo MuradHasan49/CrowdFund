@@ -12,15 +12,16 @@ import { useAuthStore } from '@/store/authStore';
 
 interface SocialLoginButtonsProps {
   isLoading?: boolean;
+  role?: 'supporter' | 'creator';
 }
 
-export function SocialLoginButtons({ isLoading }: SocialLoginButtonsProps) {
+export function SocialLoginButtons({ isLoading, role = 'supporter' }: SocialLoginButtonsProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const setUser = useAuthStore((state) => state.setUser);
 
   const socialMutation = useMutation({
-    mutationFn: async (data: { provider: 'google' | 'facebook'; token: string }) => {
+    mutationFn: async (data: { provider: 'google' | 'facebook'; token: string; role?: 'supporter' | 'creator' }) => {
       const res = await api.post('/auth/social', data);
       return res.data;
     },
@@ -37,7 +38,7 @@ export function SocialLoginButtons({ isLoading }: SocialLoginButtonsProps) {
 
   const loginWithGoogle = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      socialMutation.mutate({ provider: 'google', token: tokenResponse.access_token });
+      socialMutation.mutate({ provider: 'google', token: tokenResponse.access_token, role });
     },
     onError: () => {
       toast.error('Google Login Failed');
@@ -79,7 +80,7 @@ export function SocialLoginButtons({ isLoading }: SocialLoginButtonsProps) {
             appId={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID || 'dummy_id_prevent_crash'}
             callback={(response: any) => {
               if (response.accessToken) {
-                socialMutation.mutate({ provider: 'facebook', token: response.accessToken });
+                socialMutation.mutate({ provider: 'facebook', token: response.accessToken, role });
               } else if (response.status !== "unknown") {
                 toast.error('Facebook Login Failed');
               }

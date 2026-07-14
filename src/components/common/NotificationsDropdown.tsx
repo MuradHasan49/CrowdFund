@@ -1,13 +1,36 @@
+'use client';
+
 import { useState, useRef, useEffect } from 'react';
 import { Bell, HandHeart, CheckCircle2, Wallet, AlertCircle } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import { formatDistanceToNow } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import api from '@/lib/api';
+
+interface Notification {
+  id: string;
+  type: 'success' | 'alert' | 'contribution' | 'info';
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: string;
+}
+
+const getIconProps = (type: string) => {
+  switch (type) {
+    case 'success': return { icon: CheckCircle2, color: 'text-[var(--cf-secondary)]', bg: 'bg-[var(--cf-secondary)]/10' };
+    case 'alert': return { icon: AlertCircle, color: 'text-[var(--cf-accent)]', bg: 'bg-[var(--cf-accent)]/10' };
+    case 'contribution': return { icon: HandHeart, color: 'text-[var(--cf-primary)]', bg: 'bg-[var(--cf-primary)]/10' };
+    default: return { icon: Wallet, color: 'text-[var(--cf-text)]', bg: 'bg-[var(--cf-surface-2)]' };
+  }
+};
 
 export function NotificationsDropdown() {
   const { user } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const queryClient = useQueryClient();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -20,93 +43,27 @@ export function NotificationsDropdown() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Generate some dummy notifications based on user role
-  const getDummyNotifications = () => {
-    if (!user) return [];
+  const { data: notifications = [] } = useQuery({
+    queryKey: ['notifications', user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      const res = await api.get<{ data: Notification[] }>('/notifications');
+      return res.data.data;
+    },
+    enabled: !!user,
+    refetchInterval: 30000, // Poll every 30s
+  });
 
-    const now = new Date();
-    
-    if (user.role === 'admin') {
-      return [
-        {
-          id: 1,
-          type: 'alert',
-          title: 'New Withdrawal Request',
-          message: 'Creator "Tech Innovations" requested 5,000 credits.',
-          time: new Date(now.getTime() - 1000 * 60 * 30),
-          icon: AlertCircle,
-          color: 'text-[var(--cf-accent)]',
-          bg: 'bg-[var(--cf-accent)]/10',
-          read: false
-        },
-        {
-          id: 2,
-          type: 'success',
-          title: 'Campaign Approved',
-          message: 'You approved the "Eco-Friendly Backpack" campaign.',
-          time: new Date(now.getTime() - 1000 * 60 * 60 * 2),
-          icon: CheckCircle2,
-          color: 'text-[var(--cf-secondary)]',
-          bg: 'bg-[var(--cf-secondary)]/10',
-          read: true
-        }
-      ];
+  const markAsReadMutation = useMutation({
+    mutationFn: async () => {
+      await api.patch('/notifications/read');
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications', user?.id] });
+      setIsOpen(false);
     }
+  });
 
-    if (user.role === 'creator') {
-      return [
-        {
-          id: 1,
-          type: 'contribution',
-          title: 'New Contribution!',
-          message: 'John Doe contributed 500 credits to your campaign.',
-          time: new Date(now.getTime() - 1000 * 60 * 15),
-          icon: HandHeart,
-          color: 'text-[var(--cf-primary)]',
-          bg: 'bg-[var(--cf-primary)]/10',
-          read: false
-        },
-        {
-          id: 2,
-          type: 'success',
-          title: 'Withdrawal Processed',
-          message: 'Your withdrawal for 10,000 credits was approved.',
-          time: new Date(now.getTime() - 1000 * 60 * 60 * 24),
-          icon: Wallet,
-          color: 'text-[var(--cf-secondary)]',
-          bg: 'bg-[var(--cf-secondary)]/10',
-          read: true
-        }
-      ];
-    }
-
-    return [
-      {
-        id: 1,
-        type: 'success',
-        title: 'Contribution Successful',
-        message: 'Your contribution of 100 credits was approved!',
-        time: new Date(now.getTime() - 1000 * 60 * 5),
-        icon: CheckCircle2,
-        color: 'text-[var(--cf-secondary)]',
-        bg: 'bg-[var(--cf-secondary)]/10',
-        read: false
-      },
-      {
-        id: 2,
-        type: 'alert',
-        title: 'Low Credits',
-        message: 'Your credit balance is getting low.',
-        time: new Date(now.getTime() - 1000 * 60 * 60 * 48),
-        icon: Wallet,
-        color: 'text-[var(--cf-accent)]',
-        bg: 'bg-[var(--cf-accent)]/10',
-        read: true
-      }
-    ];
-  };
-
-  const notifications = getDummyNotifications();
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
@@ -150,7 +107,7 @@ export function NotificationsDropdown() {
               ) : (
                 <div className="divide-y divide-[var(--cf-border)]/50">
                   {notifications.map((notification) => {
-                    const Icon = notification.icon;
+                    const { icon: Icon, color, bg } = getIconProps(notification.type);
                     return (
                       <div 
                         key={notification.id} 
@@ -162,8 +119,8 @@ export function NotificationsDropdown() {
                           <span className="absolute left-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-[var(--cf-primary)]" />
                         )}
                         
-                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${notification.bg} ${!notification.read ? 'ml-2' : ''}`}>
-                          <Icon className={`h-4 w-4 ${notification.color}`} />
+                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${bg} ${!notification.read ? 'ml-2' : ''}`}>
+                          <Icon className={`h-4 w-4 ${color}`} />
                         </div>
                         
                         <div className="flex-1 min-w-0">
@@ -172,7 +129,7 @@ export function NotificationsDropdown() {
                               {notification.title}
                             </h4>
                             <span className="text-[10px] text-[var(--cf-text-muted)] whitespace-nowrap">
-                              {formatDistanceToNow(notification.time, { addSuffix: true })}
+                              {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
                             </span>
                           </div>
                           <p className="text-xs text-[var(--cf-text-muted)] leading-relaxed line-clamp-2">
@@ -190,10 +147,11 @@ export function NotificationsDropdown() {
             {notifications.length > 0 && (
               <div className="border-t border-[var(--cf-border)] p-2 bg-[var(--cf-surface-2)]/50">
                 <button 
-                  onClick={() => setIsOpen(false)}
-                  className="w-full rounded-md px-3 py-1.5 text-xs font-medium text-[var(--cf-text-muted)] hover:text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)] transition-colors"
+                  onClick={() => markAsReadMutation.mutate()}
+                  disabled={markAsReadMutation.isPending || unreadCount === 0}
+                  className="w-full rounded-md px-3 py-1.5 text-xs font-medium text-[var(--cf-text-muted)] hover:text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Mark all as read
+                  {markAsReadMutation.isPending ? 'Marking...' : 'Mark all as read'}
                 </button>
               </div>
             )}

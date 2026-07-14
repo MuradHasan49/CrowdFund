@@ -13,10 +13,12 @@ import { MIN_WITHDRAWAL_CREDITS, CREDIT_WITHDRAWAL_RATE } from '@/lib/constants'
 import toast from 'react-hot-toast';
 import { Banknote, CreditCard, ShieldAlert } from 'lucide-react';
 import { StatsCard } from '@/components/dashboard/StatsCard';
-import { useCreditStore } from '@/store/creditStore';
+import { useAuthStore } from '@/store/authStore';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function WithdrawalsClient() {
-  const { fetchCredits } = useCreditStore();
+  const { user } = useAuthStore();
+  const queryClient = useQueryClient();
   const { data: campaigns } = useQuery({
     queryKey: queryKeys.campaigns.mine,
     queryFn: async () => {
@@ -36,7 +38,7 @@ export function WithdrawalsClient() {
   const totalRaised = campaigns?.reduce((sum, c) => sum + c.raised_amount, 0) || 0;
   const totalWithdrawn = withdrawals?.filter(w => w.status === 'approved').reduce((sum, w) => sum + w.withdrawal_credit, 0) || 0;
   const pendingWithdrawal = withdrawals?.filter(w => w.status === 'pending').reduce((sum, w) => sum + w.withdrawal_credit, 0) || 0;
-  const availableToWithdraw = totalRaised - totalWithdrawn - pendingWithdrawal;
+  const availableToWithdraw = user?.credits || 0;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
@@ -65,7 +67,7 @@ export function WithdrawalsClient() {
         toast.success(res.data.message);
         setForm({ ...form, withdrawal_credit: '', account_number: '' });
         refetch();
-        fetchCredits();
+        queryClient.invalidateQueries({ queryKey: queryKeys.auth.me });
       }
     } catch (error: any) {
       toast.error(error.response?.data?.error || 'Failed to submit withdrawal request.');

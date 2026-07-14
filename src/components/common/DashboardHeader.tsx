@@ -73,9 +73,9 @@ export function DashboardHeader({ onOpenMobile }: DashboardHeaderProps) {
           </div>
           <Link href="/dashboard/profile" className="h-9 w-9 overflow-hidden rounded-full border-2 border-[var(--cf-border)] bg-[var(--cf-surface-2)] transition-transform hover:scale-105">
             {user?.photoURL ? (
-              <img src={user.photoURL} alt="Avatar" className="h-full w-full object-cover" />
+              <img src={user.photoURL} alt="Avatar" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
             ) : user?.email ? (
-              <img src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`} alt="Avatar" className="h-full w-full object-cover" />
+              <img src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`} alt="Avatar" className="h-full w-full object-cover" />
             ) : (
               <div className="flex h-full w-full items-center justify-center">
                 <UserIcon className="h-5 w-5 text-[var(--cf-text-muted)]" />

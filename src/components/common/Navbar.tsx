@@ -131,6 +131,7 @@ export default function Navbar() {
                           src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
                           alt="Avatar"
                           className="h-full w-full object-cover"
+                          referrerPolicy="no-referrer"
                         />
                       </div>
                       <ChevronDown className="h-4 w-4 text-[var(--cf-text-muted)]" />
