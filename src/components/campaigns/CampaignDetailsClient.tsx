@@ -69,22 +69,24 @@ export function CampaignDetailsClient({ id }: { id: string }) {
   return (
     <div className="bg-[var(--cf-bg)] pb-24">
       {/* Hero Image */}
-      <div className="relative h-[400px] w-full lg:h-[500px]">
-        <img
-          src={campaign.campaign_image_url || `https://picsum.photos/seed/${campaign.id}/1600/900`}
-          alt={campaign.title}
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--cf-bg)] via-[var(--cf-bg)]/60 to-transparent" />
-        
-        <div className="absolute bottom-0 w-full">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
-            <div className="inline-block rounded-full bg-[var(--cf-primary)] px-3 py-1 text-sm font-semibold text-white mb-4 shadow-lg">
-              {campaign.category}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6">
+        <div className="relative h-[400px] w-full lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+          <img
+            src={campaign.campaign_image_url || `https://picsum.photos/seed/${campaign.id}/1600/900`}
+            alt={campaign.title}
+            className="h-full w-full object-cover object-top"
+          />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[var(--cf-bg)] via-[var(--cf-bg)]/60 to-transparent" />
+          
+          <div className="absolute bottom-0 w-full z-20">
+            <div className="p-8 md:p-12">
+              <div className="inline-block rounded-full bg-[var(--cf-primary)] px-3 py-1 text-sm font-semibold text-white mb-4 shadow-lg">
+                {campaign.category}
+              </div>
+              <h1 className="text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl drop-shadow-md">
+                {campaign.title}
+              </h1>
             </div>
-            <h1 className="text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl drop-shadow-md">
-              {campaign.title}
-            </h1>
           </div>
         </div>
       </div>
@@ -119,10 +121,10 @@ export function CampaignDetailsClient({ id }: { id: string }) {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-6 sticky top-24 h-fit">
             
             {/* Funding Card */}
-            <div className="sticky top-24 rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] p-6 shadow-xl">
+            <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] p-6 shadow-xl">
               <div className="mb-2 flex items-baseline gap-2">
                 <span className="text-4xl font-extrabold text-[var(--cf-secondary)]">{formatCurrency(campaign.raised_amount)}</span>
                 <span className="text-sm font-medium text-[var(--cf-text-muted)]">raised</span>
