@@ -35,6 +35,7 @@ const MENU_ITEMS = {
   creator: [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Explore Campaigns', href: '/campaigns', icon: Search },
+    { name: 'Purchase Credit', href: '/dashboard/purchase-credit', icon: CreditCard },
     { name: 'Add New Campaign', href: '/dashboard/add-campaign', icon: PlusCircle },
     { name: 'My Campaigns', href: '/dashboard/my-campaigns', icon: FolderOpen },
     { name: 'Withdrawals', href: '/dashboard/withdrawals', icon: Banknote },

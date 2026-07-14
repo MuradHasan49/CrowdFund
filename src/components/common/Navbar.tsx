@@ -97,7 +97,7 @@ export default function Navbar() {
                     Dashboard
                   </Link>
 
-                  {user.role === 'supporter' && (
+                  {user.role !== 'admin' && (
                     <Link
                       href="/dashboard/purchase-credit"
                       className={`flex items-center text-sm font-medium transition-colors ${
@@ -266,7 +266,7 @@ export default function Navbar() {
                     <LayoutDashboard className="mr-3 h-5 w-5" />
                     Dashboard
                   </Link>
-                  {user.role === 'supporter' && (
+                  {user.role !== 'admin' && (
                     <Link
                       href="/dashboard/purchase-credit"
                       className={`flex items-center rounded-md px-3 py-2 text-base font-medium ${isActive('/dashboard/purchase-credit') ? 'text-[var(--cf-primary)] bg-[var(--cf-primary)]/10' : 'text-[var(--cf-text)] hover:bg-[var(--cf-surface-2)]'}`}
