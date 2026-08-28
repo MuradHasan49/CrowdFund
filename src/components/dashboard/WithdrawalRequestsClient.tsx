@@ -1,9 +1,5 @@
 'use client';
 
-import { Badge } from '@/components/ui/Badge';
-import { Skeleton } from '@/components/ui/Skeleton';
-
-// ... other imports ...
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { Withdrawal } from '@/types/withdrawal.types';
@@ -42,9 +38,7 @@ export function WithdrawalRequestsClient() {
 
       <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] overflow-hidden">
         {isLoading ? (
-          <div className="p-6">
-            <Skeleton variant="rectangular" className="h-[400px] w-full" />
-          </div>
+          <div className="p-12 text-center text-[var(--cf-text-muted)] animate-pulse">Loading requests...</div>
         ) : !withdrawals?.length ? (
           <div className="p-12 text-center text-[var(--cf-text-muted)]">No withdrawal requests found.</div>
         ) : (
@@ -79,9 +73,13 @@ export function WithdrawalRequestsClient() {
                       <div className="text-xs text-[var(--cf-text-muted)] font-mono">{w.account_number}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <Badge variant={w.status === 'approved' ? 'success' : w.status === 'rejected' ? 'danger' : 'warning'}>
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                        w.status === 'approved' ? 'bg-emerald-500/10 text-emerald-500' :
+                        w.status === 'rejected' ? 'bg-rose-500/10 text-rose-500' :
+                        'bg-amber-500/10 text-amber-500'
+                      }`}>
                         {w.status.charAt(0).toUpperCase() + w.status.slice(1)}
-                      </Badge>
+                      </span>
                     </td>
                     <td className="px-6 py-4 text-right space-x-2">
                       {w.status === 'pending' ? (

@@ -1,11 +1,7 @@
 'use client';
 
+import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const stats = [
   { id: 1, name: 'Total Funded', value: 24, suffix: 'M+', prefix: '$' },
@@ -15,32 +11,30 @@ const stats = [
 ];
 
 function AnimatedCounter({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [count, setCount] = useState(0);
 
-  useGSAP(() => {
-    ScrollTrigger.create({
-      trigger: ref.current,
-      start: 'top 90%',
-      once: true,
-      onEnter: () => {
-        let start = 0;
-        const duration = 2000;
-        const stepTime = Math.abs(Math.floor(duration / value));
-        const increment = Math.ceil(value / (duration / 16)); 
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 2000;
+      const stepTime = Math.abs(Math.floor(duration / value));
+      const increment = Math.ceil(value / (duration / 16)); 
 
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= value) {
-            setCount(value);
-            clearInterval(timer);
-          } else {
-            setCount(start);
-          }
-        }, 16);
-      }
-    });
-  }, { scope: ref });
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= value) {
+          setCount(value);
+          clearInterval(timer);
+        } else {
+          setCount(start);
+        }
+      }, 16);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, value]);
 
   return (
     <span ref={ref} className="text-4xl md:text-5xl font-extrabold text-[var(--cf-text)] drop-shadow-sm">
@@ -50,28 +44,8 @@ function AnimatedCounter({ value, prefix = '', suffix = '' }: { value: number; p
 }
 
 export function PlatformStats() {
-  const container = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    gsap.from('.stat-card', {
-      scrollTrigger: {
-        trigger: container.current,
-        start: 'top 85%',
-        once: true,
-      },
-      opacity: 0,
-      y: 20,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: 'power2.out',
-    });
-  }, { scope: container });
-
   return (
-    <section ref={container} className="py-24 bg-[var(--cf-surface-2)] border-b border-[var(--cf-border)] relative overflow-hidden">
+    <section className="py-24 bg-[var(--cf-surface-2)] border-b border-[var(--cf-border)] relative overflow-hidden">
       
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
@@ -79,10 +53,14 @@ export function PlatformStats() {
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
-          {stats.map((stat) => (
-            <div 
+          {stats.map((stat, index) => (
+            <motion.div 
               key={stat.id}
-              className="stat-card flex flex-col items-center justify-center p-6 rounded-2xl bg-[var(--cf-bg)]/50 border border-[var(--cf-border)] backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[var(--cf-bg)]/50 border border-[var(--cf-border)] backdrop-blur-sm"
             >
               <div className="mb-3 text-[var(--cf-primary)]">
                 <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
@@ -90,7 +68,7 @@ export function PlatformStats() {
               <p className="text-sm md:text-base font-medium text-[var(--cf-text-muted)] tracking-wide uppercase">
                 {stat.name}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,9 +1,5 @@
 'use client';
 
-import { Badge } from '@/components/ui/Badge';
-import { Skeleton } from '@/components/ui/Skeleton';
-
-// ... other imports ...
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/lib/queryKeys';
@@ -187,9 +183,7 @@ export function WithdrawalsClient() {
           <h3 className="text-lg font-bold text-[var(--cf-text)]">Withdrawal History</h3>
           <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] overflow-hidden">
             {isLoading ? (
-              <div className="p-6">
-                <Skeleton variant="rectangular" className="h-[400px] w-full" />
-              </div>
+              <div className="p-12 text-center text-[var(--cf-text-muted)] animate-pulse">Loading history...</div>
             ) : !withdrawals?.length ? (
               <div className="p-12 text-center text-[var(--cf-text-muted)]">
                 You haven't made any withdrawal requests yet.
@@ -216,9 +210,13 @@ export function WithdrawalsClient() {
                         <td className="px-6 py-4 text-[var(--cf-secondary)] font-semibold">{formatCurrency(w.withdrawal_amount)}</td>
                         <td className="px-6 py-4 capitalize">{w.payment_system}</td>
                         <td className="px-6 py-4">
-                          <Badge variant={w.status === 'approved' ? 'success' : w.status === 'rejected' ? 'danger' : 'warning'}>
+                          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                            w.status === 'approved' ? 'bg-emerald-500/10 text-emerald-500' :
+                            w.status === 'rejected' ? 'bg-rose-500/10 text-rose-500' :
+                            'bg-amber-500/10 text-amber-500'
+                          }`}>
                             {w.status.charAt(0).toUpperCase() + w.status.slice(1)}
-                          </Badge>
+                          </span>
                         </td>
                       </tr>
                     ))}
