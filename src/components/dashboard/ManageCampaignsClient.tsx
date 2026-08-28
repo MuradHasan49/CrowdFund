@@ -1,5 +1,9 @@
 'use client';
 
+import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
+
+// ... other imports ...
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
@@ -54,7 +58,9 @@ export function ManageCampaignsClient() {
 
       <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] overflow-hidden">
         {isLoading ? (
-          <div className="p-12 text-center text-[var(--cf-text-muted)] animate-pulse">Loading campaigns...</div>
+          <div className="p-6">
+            <Skeleton variant="rectangular" className="h-[400px] w-full" />
+          </div>
         ) : !campaigns?.length ? (
           <div className="p-12 text-center text-[var(--cf-text-muted)]">No campaigns found.</div>
         ) : (
@@ -85,14 +91,13 @@ export function ManageCampaignsClient() {
                         <div className="font-medium">{c.creator_name}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                          c.status === 'active' ? 'bg-emerald-500/10 text-emerald-500' :
-                          c.status === 'rejected' ? 'bg-rose-500/10 text-rose-500' :
-                          c.status === 'closed' ? 'bg-[var(--cf-text-muted)]/10 text-[var(--cf-text-muted)]' :
-                          'bg-amber-500/10 text-amber-500'
-                        }`}>
+                        <Badge variant={
+                          c.status === 'active' ? 'success' :
+                          c.status === 'rejected' ? 'danger' :
+                          c.status === 'closed' ? 'neutral' : 'warning'
+                        }>
                           {c.status.charAt(0).toUpperCase() + c.status.slice(1)}
-                        </span>
+                        </Badge>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-col gap-1 w-24">

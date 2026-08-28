@@ -1,5 +1,11 @@
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
 import { Monitor, HeartPulse, Palette, Users, GraduationCap, LayoutGrid } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const categories = [
   { id: 'tech', name: 'Technology', icon: Monitor, color: 'text-blue-400', bg: 'bg-blue-400/10' },
@@ -11,8 +17,28 @@ const categories = [
 ];
 
 export function ExploreByCategory() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    gsap.from('.category-card', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 85%',
+        once: true,
+      },
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.5,
+      stagger: 0.05,
+      ease: 'back.out(1.2)',
+    });
+  }, { scope: container });
+
   return (
-    <section className="py-24 bg-[var(--cf-surface)] border-y border-[var(--cf-border)]">
+    <section ref={container} className="py-24 bg-[var(--cf-surface)] border-y border-[var(--cf-border)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-[var(--cf-text)] sm:text-4xl mb-4">
@@ -30,7 +56,7 @@ export function ExploreByCategory() {
               <Link 
                 key={cat.id} 
                 href={`/campaigns?category=${cat.name}`}
-                className="group flex flex-col items-center justify-center p-8 rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-bg)] transition-all duration-300 hover:border-[var(--cf-primary)] hover:shadow-lg hover:shadow-[var(--cf-primary)]/10 hover:-translate-y-1"
+                className="category-card group flex flex-col items-center justify-center p-8 rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-bg)] transition-all duration-300 hover:border-[var(--cf-primary)] hover:shadow-lg hover:shadow-[var(--cf-primary)]/10 hover:-translate-y-1"
               >
                 <div className={`w-16 h-16 rounded-2xl ${cat.bg} ${cat.color} flex items-center justify-center mb-4 transition-transform group-hover:scale-110 duration-300`}>
                   <Icon className="w-8 h-8" />

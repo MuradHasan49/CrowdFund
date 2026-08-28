@@ -1,9 +1,15 @@
 'use client';
 
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const testimonials = [
   {
@@ -44,9 +50,28 @@ const testimonials = [
 ];
 
 export function Testimonials() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    gsap.from('.testimonials-content', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 75%',
+        once: true,
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: 'power2.out',
+    });
+  }, { scope: container });
+
   return (
-    <section className="py-24 bg-[var(--cf-surface-2)]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+    <section ref={container} className="py-24 bg-[var(--cf-surface-2)]">
+      <div className="testimonials-content mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-bold tracking-tight text-[var(--cf-text)] sm:text-4xl mb-4">
           Trusted by Creators & Backers
         </h2>

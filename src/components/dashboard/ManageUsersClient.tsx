@@ -1,5 +1,9 @@
 'use client';
 
+import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
+
+// ... other imports ...
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/lib/queryKeys';
@@ -66,7 +70,9 @@ export function ManageUsersClient() {
 
       <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] overflow-hidden">
         {isLoading ? (
-          <div className="p-12 text-center text-[var(--cf-text-muted)] animate-pulse">Loading users...</div>
+          <div className="p-6">
+            <Skeleton variant="rectangular" className="h-[400px] w-full" />
+          </div>
         ) : !users?.length ? (
           <div className="p-12 text-center text-[var(--cf-text-muted)]">No users found.</div>
         ) : (
@@ -90,7 +96,7 @@ export function ManageUsersClient() {
                     </td>
                     <td className="px-6 py-4">
                       <select
-                        className="rounded bg-[var(--cf-bg)] border border-[var(--cf-border)] px-2 py-1 text-xs focus:outline-none focus:border-[var(--cf-primary)] capitalize"
+                        className="rounded-lg bg-[var(--cf-bg)] border border-[var(--cf-border)] px-3 py-1.5 text-xs focus:outline-none focus:border-[var(--cf-primary)] capitalize"
                         value={user.role}
                         onChange={(e) => updateRole(user.id, e.target.value)}
                         disabled={user.role === 'admin'}
@@ -102,11 +108,9 @@ export function ManageUsersClient() {
                     </td>
                     <td className="px-6 py-4 font-semibold">{(user.credits || 0).toLocaleString()}</td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                        user.isActive ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'
-                      }`}>
+                      <Badge variant={user.isActive ? 'success' : 'danger'}>
                         {user.isActive ? 'Active' : 'Blocked'}
-                      </span>
+                      </Badge>
                     </td>
                     <td className="px-6 py-4 text-right">
                       {user.role !== 'admin' && (

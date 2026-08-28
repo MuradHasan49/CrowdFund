@@ -1,14 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import toast from 'react-hot-toast';
 import { Send } from 'lucide-react';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    gsap.from('.newsletter-card', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+        once: true,
+      },
+      opacity: 0,
+      scale: 0.95,
+      y: 20,
+      duration: 0.7,
+      ease: 'power2.out',
+    });
+  }, { scope: container });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,9 +48,9 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-24 bg-[var(--cf-bg)]">
+    <section ref={container} className="py-24 bg-[var(--cf-bg)]">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-br from-[var(--cf-surface-2)] to-[var(--cf-surface)] border border-[var(--cf-border)] p-8 md:p-16 text-center shadow-2xl relative overflow-hidden">
+        <div className="newsletter-card rounded-3xl bg-gradient-to-br from-[var(--cf-surface-2)] to-[var(--cf-surface)] border border-[var(--cf-border)] p-8 md:p-16 text-center shadow-2xl relative overflow-hidden">
           
           {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--cf-primary)]/10 rounded-full blur-[80px]" />

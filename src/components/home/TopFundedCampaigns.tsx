@@ -1,5 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/lib/queryKeys';
 import api from '@/lib/api';
@@ -9,7 +13,11 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export function TopFundedCampaigns() {
+  const container = useRef<HTMLDivElement>(null);
+
   const { data, isLoading, isError } = useQuery({
     queryKey: queryKeys.campaigns.top,
     queryFn: async () => {
@@ -18,8 +26,28 @@ export function TopFundedCampaigns() {
     },
   });
 
+  useGSAP(() => {
+    if (!data || isLoading || isError) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    gsap.from('.campaign-card-wrap', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+        once: true,
+      },
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+    });
+  }, { scope: container, dependencies: [data, isLoading, isError] });
+
   return (
-    <section className="py-24 bg-[var(--cf-bg)]">
+    <section ref={container} className="py-24 bg-[var(--cf-bg)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
@@ -46,7 +74,9 @@ export function TopFundedCampaigns() {
         ) : data && data.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {data.slice(0, 8).map((campaign) => (
-              <CampaignCard key={campaign.id} campaign={campaign} />
+              <div key={campaign.id} className="campaign-card-wrap h-full">
+                <CampaignCard campaign={campaign} />
+              </div>
             ))}
           </div>
         ) : (

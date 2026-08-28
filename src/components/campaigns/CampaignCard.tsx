@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { Campaign } from '@/types/campaign.types';
 import { formatCurrency, cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Clock, TrendingUp } from 'lucide-react';
 
 interface CampaignCardProps {
@@ -14,19 +17,23 @@ export function CampaignCard({ campaign, className }: CampaignCardProps) {
   const daysLeft = Math.max(0, Math.ceil((new Date(campaign.deadline).getTime() - new Date().getTime()) / (1000 * 3600 * 24)));
 
   return (
-    <div className={cn("flex flex-col overflow-hidden rounded-xl border border-[var(--cf-border)] bg-[var(--cf-surface)] shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-[var(--cf-primary)]/10 hover:-translate-y-1", className)}>
+    <Card padding="none" variant="elevated" className={cn("flex flex-col overflow-hidden", className)}>
       <div className="relative aspect-video w-full overflow-hidden">
         <img
           src={campaign.campaign_image_url || `https://picsum.photos/seed/${campaign.id}/800/450`}
           alt={campaign.title}
           className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
         />
-        <div className="absolute top-3 left-3 rounded-full bg-[var(--cf-bg)]/80 px-2.5 py-1 text-xs font-semibold text-[var(--cf-text)] backdrop-blur-md border border-[var(--cf-border)]">
-          {campaign.category}
+        <div className="absolute top-3 left-3">
+          <Badge variant="neutral" className="bg-[var(--cf-bg)]/80 backdrop-blur-md border-[var(--cf-border)] text-[var(--cf-text)]">
+            {campaign.category}
+          </Badge>
         </div>
         {campaign.status !== 'active' && (
-          <div className="absolute top-3 right-3 rounded-full bg-[var(--cf-accent)] px-2.5 py-1 text-xs font-semibold text-white uppercase tracking-wider">
-            {campaign.status}
+          <div className="absolute top-3 right-3">
+            <Badge variant="danger" className="uppercase tracking-wider">
+              {campaign.status}
+            </Badge>
           </div>
         )}
       </div>
@@ -69,39 +76,42 @@ export function CampaignCard({ campaign, className }: CampaignCardProps) {
             </div>
           </div>
 
-          <Button className="w-full">
-            <Link href={`/campaigns/${campaign.id}`} className="w-full flex justify-center items-center h-full">View Details</Link>
+          <Button asChild className="w-full">
+            <Link href={`/campaigns/${campaign.id}`}>View Details</Link>
           </Button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 
 export function CampaignCardSkeleton() {
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-[var(--cf-border)] bg-[var(--cf-surface)] shadow-lg animate-pulse">
-      <div className="aspect-video w-full bg-[var(--cf-surface-2)]" />
+    <Card padding="none" className="flex flex-col overflow-hidden shadow-lg">
+      <Skeleton variant="rectangular" className="aspect-video w-full rounded-none" />
       <div className="flex flex-1 flex-col p-5">
-        <div className="h-4 w-1/3 rounded bg-[var(--cf-surface-2)] mb-2" />
-        <div className="h-6 w-3/4 rounded bg-[var(--cf-surface-2)] mb-2" />
-        <div className="h-4 w-full rounded bg-[var(--cf-surface-2)] mb-1" />
-        <div className="h-4 w-5/6 rounded bg-[var(--cf-surface-2)] mb-4" />
+        <Skeleton variant="text" className="w-1/3 mb-2" />
+        <Skeleton variant="text" className="h-6 w-3/4 mb-2" />
+        <Skeleton variant="text" className="w-full mb-1" />
+        <Skeleton variant="text" className="w-5/6 mb-4" />
+        
         <div className="mt-auto space-y-4">
           <div className="space-y-2">
             <div className="flex justify-between">
-              <div className="h-4 w-1/4 rounded bg-[var(--cf-surface-2)]" />
-              <div className="h-4 w-1/4 rounded bg-[var(--cf-surface-2)]" />
+              <Skeleton variant="text" className="w-1/4" />
+              <Skeleton variant="text" className="w-1/4" />
             </div>
-            <div className="h-2 w-full rounded-full bg-[var(--cf-surface-2)]" />
+            <Skeleton variant="rectangular" className="h-2 w-full rounded-full" />
           </div>
+          
           <div className="flex justify-between pt-4 border-t border-[var(--cf-border)]">
-            <div className="h-4 w-1/4 rounded bg-[var(--cf-surface-2)]" />
-            <div className="h-4 w-1/4 rounded bg-[var(--cf-surface-2)]" />
+            <Skeleton variant="text" className="w-1/4" />
+            <Skeleton variant="text" className="w-1/4" />
           </div>
-          <div className="h-11 w-full rounded-lg bg-[var(--cf-surface-2)]" />
+          
+          <Skeleton variant="rectangular" className="h-11 w-full rounded-lg" />
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

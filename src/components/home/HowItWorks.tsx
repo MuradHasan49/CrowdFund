@@ -1,4 +1,10 @@
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { Lightbulb, Rocket, HandCoins } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const steps = [
   {
@@ -25,8 +31,28 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    gsap.from('.step-item', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+        once: true,
+      },
+      opacity: 0,
+      x: (i) => (i % 2 === 0 ? -30 : 30),
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+    });
+  }, { scope: container });
+
   return (
-    <section className="py-24 bg-[var(--cf-bg)] relative overflow-hidden">
+    <section ref={container} className="py-24 bg-[var(--cf-bg)] relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none opacity-30">
         <div className="absolute top-1/4 left-10 w-64 h-64 bg-[var(--cf-primary)] rounded-full mix-blend-screen filter blur-[100px]" />
@@ -47,10 +73,10 @@ export function HowItWorks() {
           {/* Connecting line for desktop */}
           <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-[var(--cf-primary)] via-[var(--cf-secondary)] to-[var(--cf-accent)] opacity-20" />
 
-          {steps.map((step, index) => {
+          {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div key={step.id} className="relative flex flex-col items-center text-center">
+              <div key={step.id} className="step-item relative flex flex-col items-center text-center">
                 <div 
                   className="w-24 h-24 rounded-2xl flex items-center justify-center mb-6 shadow-xl relative z-10 transition-transform hover:-translate-y-2 duration-300"
                   style={{ backgroundColor: `${step.color}20`, border: `1px solid ${step.color}40` }}

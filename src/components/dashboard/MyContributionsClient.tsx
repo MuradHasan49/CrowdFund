@@ -1,5 +1,9 @@
 'use client';
 
+import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
+
+// ... other imports ...
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { Contribution } from '@/types/contribution.types';
@@ -25,7 +29,9 @@ export function MyContributionsClient() {
 
       <div className="rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface)] overflow-hidden">
         {isLoading ? (
-          <div className="p-12 text-center text-[var(--cf-text-muted)] animate-pulse">Loading contributions...</div>
+          <div className="p-6">
+            <Skeleton variant="rectangular" className="h-[400px] w-full" />
+          </div>
         ) : !contributions?.length ? (
           <div className="p-16 text-center">
             <h3 className="text-xl font-bold text-[var(--cf-text)] mb-2">No contributions yet</h3>
@@ -65,14 +71,20 @@ export function MyContributionsClient() {
                       {formatCurrency(c.amount / CREDIT_PURCHASE_RATE)}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                        c.status === 'approved' ? 'bg-emerald-500/10 text-emerald-500' :
-                        c.status === 'rejected' ? 'bg-rose-500/10 text-rose-500' :
-                        'bg-amber-500/10 text-amber-500'
-                      }`}>
+                      <Badge variant={c.status === 'approved' ? 'success' : c.status === 'rejected' ? 'danger' : 'warning'}>
                         {c.status.charAt(0).toUpperCase() + c.status.slice(1)}
-                      </span>
+                      </Badge>
                     </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
                   </tr>
                 ))}
               </tbody>
