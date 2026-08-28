@@ -1,4 +1,4 @@
-# CrowdFund — Community Crowdfunding Platform
+# CrowdFund — Community Crowdfunding Platform....
 
 > **Empower creators. Support ideas. Build communities.**
 
