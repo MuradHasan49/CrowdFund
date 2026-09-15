@@ -17,7 +17,7 @@
 ## 📂 Repositories
 
 - **Client Repository:** https://github.com/MuradHasan49/CrowdFund
-- **Server Repository:** `https://github.com/MuradHasan49/CrowdFund-server`
+- **Server Repository:** https://github.com/MuradHasan49/CrowdFund-server
 
 ---
 
