@@ -10,7 +10,7 @@
 
 ## 🌐 Live Site
 
-**URL:** `https://crowd-fund-topaz.vercel.app/`
+**URL:** https://crowd-fund-topaz.vercel.app/
 
 ---
 
